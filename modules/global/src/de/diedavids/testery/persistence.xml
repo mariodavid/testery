@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="2.0">
+    <persistence-unit name="testery"
+                      transaction-type="RESOURCE_LOCAL">
+        <class>de.diedavids.testery.entity.testcase.Testcase</class>
+        <class>de.diedavids.testery.entity.testcase.Testsuite</class>
+        <class>de.diedavids.testery.entity.teststep.Teststep</class>
+        <class>de.diedavids.testery.entity.testaction.Testaction</class>
+        <class>de.diedavids.testery.entity.teststep.TeststepResult</class>
+        <class>de.diedavids.testery.entity.testaction.ActionScript</class>
+        <class>de.diedavids.testery.entity.testaction.Testscript</class>
+        <class>de.diedavids.testery.entity.teststep.SingleValueTeststepResult</class>
+        <class>de.diedavids.testery.entity.teststep.table.TableValueTeststepResult</class>
+        <class>de.diedavids.testery.entity.teststep.JsonTeststepResult</class>
+    </persistence-unit>
+</persistence>

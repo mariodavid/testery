@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://createCaption"
+        class="de.diedavids.testery.web.testcase.testcase.TestcaseCreate"
+        datasource="testcaseDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.testery.web.testcase.testcase">
+    <dsContext>
+        <datasource id="testcaseDs"
+                    class="de.diedavids.testery.entity.testcase.Testcase"
+                    view="testcase-view">
+        </datasource>
+        <collectionDatasource id="testsuitesDs"
+                              class="de.diedavids.testery.entity.testcase.Testsuite"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from testery$Testsuite e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="testcaseDs">
+            <column width="400px">
+                <field optionsDatasource="testsuitesDs"
+                       property="testsuite"/>
+                <field property="name"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.testery.web.testaction.actionscript.ActionScriptEdit"
+        datasource="actionScriptDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.testery.web.testaction.actionscript">
+    <dsContext>
+        <datasource id="actionScriptDs"
+                    class="de.diedavids.testery.entity.testaction.ActionScript"
+                    view="actionScript-view"/>
+        <collectionDatasource id="actionsDs"
+                              class="de.diedavids.testery.entity.testaction.Testaction"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from testery$Testaction e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="scriptsDs"
+                              class="de.diedavids.testery.entity.testaction.Testscript"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from testery$Testscript e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="actionScriptDs">
+            <column width="250px">
+                <field optionsDatasource="actionsDs"
+                       property="action"/>
+                <field optionsDatasource="scriptsDs"
+                       property="script"/>
+                <field property="resultType"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

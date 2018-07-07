@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="de.diedavids.testery.web.testaction.testscript.TestscriptBrowse"
+        focusComponent="testscriptsTable"
+        lookupComponent="testscriptsTable"
+        messagesPack="de.diedavids.testery.web.testaction.testscript">
+    <dsContext>
+        <groupDatasource id="testscriptsDs"
+                         class="de.diedavids.testery.entity.testaction.Testscript"
+                         view="_local">
+            <query>
+                <![CDATA[select e from testery$Testscript e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="testscriptsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="testscriptsTable"
+                datasource="testscriptsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="testscriptsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="description"/>
+                <column id="script"/>
+            </columns>
+            <rows datasource="testscriptsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="testscriptsTable.create"/>
+                <button id="editBtn"
+                        action="testscriptsTable.edit"/>
+                <button id="removeBtn"
+                        action="testscriptsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

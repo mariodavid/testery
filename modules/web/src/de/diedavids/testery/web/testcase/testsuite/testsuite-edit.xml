@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.testery.web.testcase.testsuite.TestsuiteEdit"
+        datasource="testsuiteDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.testery.web.testcase.testsuite">
+    <dsContext>
+        <datasource id="testsuiteDs"
+                    class="de.diedavids.testery.entity.testcase.Testsuite"
+                    view="testsuite-view">
+            <collectionDatasource id="testcasesDs"
+                                  property="testcases"/>
+        </datasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="testcasesBox"
+            spacing="true">
+        <hbox spacing="true">
+
+            <fieldGroup id="fieldGroup"
+                        datasource="testsuiteDs">
+                <column width="250px">
+                    <field property="name"/>
+                    <field property="code"/>
+                </column>
+            </fieldGroup>
+
+            <fieldGroup id="descriptionFieldGroup"
+                        datasource="testsuiteDs">
+                <column width="250px">
+                    <field property="description"
+                           rows="3"/>
+                </column>
+            </fieldGroup>
+        </hbox>
+        <groupBox id="testcasesBox"
+                  expand="testcasesTable"
+                  caption="msg://de.diedavids.testery.entity.testcase/Testsuite.testcases">
+            <table id="testcasesTable"
+                   width="100%">
+                <actions>
+                    <action id="create"/>
+                    <action id="edit"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="testcaseId"/>
+                    <column id="name"/>
+                    <column id="description"/>
+                    <column id="successful"/>
+                    <column id="comment"/>
+                </columns>
+                <rows datasource="testcasesDs"/>
+                <buttonsPanel>
+                    <button action="testcasesTable.create"/>
+                    <button action="testcasesTable.edit"/>
+                    <button action="testcasesTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

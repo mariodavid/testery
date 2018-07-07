@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="de.diedavids.testery.entity.testaction.ActionScript"
+          extends="_local"
+          name="actionScript-view">
+        <property name="action"
+                  view="_minimal"/>
+        <property name="script"
+                  view="_local"/>
+    </view>
+    <view class="de.diedavids.testery.entity.testcase.Testcase"
+          extends="_local"
+          name="testcase-view">
+        <property name="steps"
+                  view="teststep-view"/>
+    </view>
+    <view class="de.diedavids.testery.entity.teststep.Teststep"
+          extends="_local"
+          name="teststep-view"
+          systemProperties="true">
+        <property name="testcase"
+                  view="_minimal"/>
+        <property name="action"
+                  view="_minimal"/>
+        <property name="result"
+                  view="result-view"/>
+    </view>
+    <view class="de.diedavids.testery.entity.teststep.TeststepResult"
+          extends="_local"
+          name="result-view"/>
+    <view class="de.diedavids.testery.entity.testcase.Testsuite"
+          extends="_local"
+          name="testsuite-view">
+        <property name="testcases"
+                  view="_local"/>
+    </view>
+    <view class="de.diedavids.testery.entity.teststep.SingleValueTeststepResult"
+          extends="_local"
+          name="result-view"/>
+    <view class="de.diedavids.testery.entity.teststep.table.TableValueTeststepResult"
+          extends="_local"
+          name="result-view"/>
+    <view class="de.diedavids.testery.entity.teststep.JsonTeststepResult"
+          extends="_local"
+          name="result-view"/>
+</views>

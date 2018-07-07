@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-testery"
+          insertBefore="administration">
+        <item screen="testery$Testsuite.browse"/>
+        <item screen="testery$Testcase.browse"/>
+    </menu>
+    <menu id="application-testery-masterdata"
+          insertBefore="administration">
+        <item screen="testery$Testscript.browse"/>
+        <item screen="testery$ActionScript.browse"/>
+        <item screen="testery$Testaction.browse"/>
+    </menu>
+</menu-config>

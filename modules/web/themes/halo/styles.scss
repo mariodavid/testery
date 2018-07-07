@@ -1,0 +1,21 @@
+@import "halo-defaults";
+@import "de.diedavids.testery/halo-ext-defaults";
+@import "app-components";
+@import "de.diedavids.testery/halo-ext";
+
+.halo {
+  // include auto-generated app components SCSS
+  @include app_components;
+  
+  @include de_diedavids_testery-halo-ext;
+
+
+  .c-sidemenu-title {
+    //background: #4b4b4b;
+
+
+    //background: #f9b51b;
+    background: #f04e5a;
+    border-bottom: 0px;
+  }
+}

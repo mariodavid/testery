@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.testery.web.teststep.table.tablevalueteststepresult.TableValueTeststepResultEdit"
+        datasource="tableValueTeststepResultDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.testery.web.teststep.table.tablevalueteststepresult">
+    <dsContext>
+        <datasource id="tableValueTeststepResultDs"
+                    class="de.diedavids.testery.entity.teststep.table.TableValueTeststepResult"
+                    view="result-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="tableValueTeststepResultDs">
+            <column width="250px">
+                <field property="summary"/>
+                <field property="error"
+                       rows="5"/>
+                <field property="stacktrace"
+                       rows="5"/>
+                <field property="expectedTable"
+                       rows="5"/>
+                <field property="actualTable"
+                       rows="5"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

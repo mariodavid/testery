@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <screen id="testery$Testaction.browse"
+            template="de/diedavids/testery/web/testaction/testaction/testaction-browse.xml"/>
+    <screen id="testery$Testaction.edit"
+            template="de/diedavids/testery/web/testaction/testaction/testaction-edit.xml"/>
+    <screen id="testery$Testscript.browse"
+            template="de/diedavids/testery/web/testaction/testscript/testscript-browse.xml"/>
+    <screen id="testery$Testscript.edit"
+            template="de/diedavids/testery/web/testaction/testscript/testscript-edit.xml"/>
+    <screen id="testery$ActionScript.browse"
+            template="de/diedavids/testery/web/testaction/actionscript/action-script-browse.xml"/>
+    <screen id="testery$ActionScript.edit"
+            template="de/diedavids/testery/web/testaction/actionscript/action-script-edit.xml"/>
+    <screen id="testery$Testsuite.browse"
+            template="de/diedavids/testery/web/testcase/testsuite/testsuite-browse.xml"/>
+    <screen id="testery$Testsuite.edit"
+            template="de/diedavids/testery/web/testcase/testsuite/testsuite-edit.xml"/>
+    <screen id="testery$Teststep.edit"
+            template="/de/diedavids/testery/web/teststep/teststep/teststep-edit.xml"/>
+    <screen id="testery$TeststepResult.edit"
+            template="/de/diedavids/testery/web/teststep/teststepresult/teststep-result-edit.xml"/>
+    <screen id="mainWindow"
+            template="de/diedavids/testery/web/screens/ext-mainwindow.xml"/>
+    <screen id="testery$Testcase.browse"
+            template="/de/diedavids/testery/web/testcase/testcase/testcase-browse.xml"/>
+    <screen id="testery$Testcase.create"
+            template="/de/diedavids/testery/web/testcase/testcase/testcase-create.xml"/>
+    <screen id="testery$Testcase.edit"
+            template="/de/diedavids/testery/web/testcase/testcase/testcase-edit.xml"/>
+    <screen id="testery$TableValueTeststepResult.edit"
+            template="de/diedavids/testery/web/teststep/table/tablevalueteststepresult/table-value-teststep-result-edit.xml"/>
+    <screen id="testery$SingleValueTeststepResult.edit"
+            template="de/diedavids/testery/web/teststep/singlevalueteststepresult/single-value-teststep-result-edit.xml"/>
+    <screen id="testery$JsonTeststepResult.edit"
+            template="de/diedavids/testery/web/teststep/jsonteststepresult/json-teststep-result-edit.xml"/>
+</screen-config>

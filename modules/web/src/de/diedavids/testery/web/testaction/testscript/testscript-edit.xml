@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.testery.web.testaction.testscript.TestscriptEdit"
+        datasource="testscriptDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.testery.web.testaction.testscript">
+    <dsContext>
+        <datasource id="testscriptDs"
+                    class="de.diedavids.testery.entity.testaction.Testscript"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scriptSourceCodeEditor"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="testscriptDs">
+            <column width="300px">
+                <field property="name"/>
+            </column>
+            <column width="300px">
+                <field property="description"
+                       rows="3"/>
+            </column>
+        </fieldGroup>
+
+        <sourceCodeEditor id="scriptSourceCodeEditor"
+                          caption="msg://script"
+                          contextHelpText="msg://teststepScriptContextHelp"
+                          handleTabKey="true"
+                          datasource="testscriptDs"
+                          mode="Groovy"
+                          property="script"
+                          width="100%"/>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

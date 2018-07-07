@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="de.diedavids.testery.web.testaction.actionscript.ActionScriptBrowse"
+        focusComponent="actionScriptsTable"
+        lookupComponent="actionScriptsTable"
+        messagesPack="de.diedavids.testery.web.testaction.actionscript">
+    <dsContext>
+        <groupDatasource id="actionScriptsDs"
+                         class="de.diedavids.testery.entity.testaction.ActionScript"
+                         view="actionScript-view">
+            <query>
+                <![CDATA[select e from testery$ActionScript e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="actionScriptsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="actionScriptsTable"
+                datasource="actionScriptsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="actionScriptsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="action"/>
+                <column id="script"/>
+                <column id="resultType"/>
+            </columns>
+            <rows datasource="actionScriptsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="actionScriptsTable.create"/>
+                <button id="editBtn"
+                        action="actionScriptsTable.edit"/>
+                <button id="removeBtn"
+                        action="actionScriptsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

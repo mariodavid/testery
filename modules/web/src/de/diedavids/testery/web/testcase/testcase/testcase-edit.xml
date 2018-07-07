@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.testery.web.testcase.testcase.TestcaseEdit"
+        datasource="testcaseDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.testery.web.testcase.testcase">
+    <dsContext>
+        <datasource id="testcaseDs"
+                    class="de.diedavids.testery.entity.testcase.Testcase"
+                    view="testcase-view">
+            <collectionDatasource id="stepsDs"
+                                  property="steps"/>
+        </datasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="contentTabSheet"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="testcaseDs">
+            <column width="250px">
+                <field editable="false"
+                       property="testcaseId"/>
+                <field property="name"/>
+                <field property="successful"/>
+            </column>
+        </fieldGroup>
+        <tabSheet id="contentTabSheet">
+            <tab id="stepsTab"
+                 caption="msg://steps"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <table id="stepsTable"
+                       height="100%"
+                       width="100%">
+                    <actions>
+                        <action id="create"
+                                openType="DIALOG"/>
+                        <action id="execute"
+                                caption="msg://execute"
+                                icon="PLAY"
+                                invoke="executeTeststep"
+                                trackSelection="true"/>
+                        <action id="resetTeststep"
+                                caption="msg://resetTeststep"
+                                icon="font-icon:ERASER"
+                                invoke="resetTeststep"
+                                trackSelection="true"/>
+                    </actions>
+                    <columns>
+
+                        <column id="createTs"/>
+                        <column id="action"/>
+                        <column id="executed"/>
+                        <column id="executedAt"/>
+                        <column id="comment"
+                                editable="true"/>
+                        <column id="successful"
+                                editable="true"/>
+                    </columns>
+                    <rows datasource="stepsDs"/>
+                    <buttonsPanel>
+                        <button action="stepsTable.create"/>
+                        <button action="stepsTable.execute"/>
+                        <button action="stepsTable.resetTeststep"/>
+                    </buttonsPanel>
+                </table>
+            </tab>
+            <tab id="descriptionTab"
+                 caption="msg://description"
+                 margin="true,false,false,false"
+                 expand="descriptionTextArea"
+                 spacing="true">
+                <textArea id="descriptionTextArea"
+                          width="100%"
+                          datasource="testcaseDs"
+                          property="description"
+                          />
+            </tab>
+            <tab id="commentTab"
+                 caption="msg://comment"
+                 margin="true,false,false,false"
+
+                 expand="commentTextArea"
+                 spacing="true">
+                <textArea id="commentTextArea"
+                          width="100%"
+                          datasource="testcaseDs"
+                          property="comment"
+                />
+            </tab>
+        </tabSheet>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

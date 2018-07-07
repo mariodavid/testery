@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.testery.web.teststep.teststepresult.TeststepResultEdit"
+        datasource="teststepResultDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.testery.web.teststep.teststepresult">
+    <dsContext>
+        <datasource id="teststepResultDs"
+                    class="de.diedavids.testery.entity.teststep.TeststepResult"
+                    view="result-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="contentTabSheet"
+            spacing="true">
+        <tabSheet id="contentTabSheet">
+            <tab id="general"
+                 caption="msg://general"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <fieldGroup id="fieldGroup"
+                            datasource="teststepResultDs">
+                    <column width="250px">
+                        <field editable="false"
+                               property="summary"/>
+                    </column>
+                </fieldGroup>
+            </tab>
+            <tab id="error"
+                 caption="msg://error"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <vbox id="errorContent"
+                      height="100%"
+                      spacing="true">
+                    <textArea id="errorTextArea"
+                              caption="msg://error"
+                              datasource="teststepResultDs"
+                              editable="false"
+                              height="100%"
+                              property="error"
+                              width="100%"/>
+                    <textArea id="stacktraceTextArea"
+                              caption="msg://stacktrace"
+                              datasource="teststepResultDs"
+                              editable="false"
+                              height="100%"
+                              property="stacktrace"
+                              width="100%"/>
+                </vbox>
+            </tab>
+        </tabSheet>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
