@@ -2,32 +2,75 @@
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://editorCaption"
         class="de.diedavids.testery.web.teststep.table.tablevalueteststepresult.TableValueTeststepResultEdit"
-        datasource="tableValueTeststepResultDs"
+        datasource="teststepResultDs"
         focusComponent="fieldGroup"
         messagesPack="de.diedavids.testery.web.teststep.table.tablevalueteststepresult">
     <dsContext>
-        <datasource id="tableValueTeststepResultDs"
+        <datasource id="teststepResultDs"
                     class="de.diedavids.testery.entity.teststep.table.TableValueTeststepResult"
                     view="result-view"/>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="windowActions"
+    <layout expand="contentTabSheet"
             spacing="true">
-        <fieldGroup id="fieldGroup"
-                    datasource="tableValueTeststepResultDs">
-            <column width="250px">
-                <field property="summary"/>
-                <field property="error"
-                       rows="5"/>
-                <field property="stacktrace"
-                       rows="5"/>
-                <field property="expectedTable"
-                       rows="5"/>
-                <field property="actualTable"
-                       rows="5"/>
-            </column>
-        </fieldGroup>
+        <tabSheet id="contentTabSheet">
+            <tab id="general"
+                 caption="msg://general"
+                 expand="expectedActualHBox"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <fieldGroup id="fieldGroup"
+                            datasource="teststepResultDs">
+                    <column width="250px">
+                        <field editable="false"
+                               property="summary"/>
+                    </column>
+                </fieldGroup>
+                <vbox id="expectedActualHBox"
+                      width="100%">
+                    <tabSheet width="100%">
+                        <tab id="expectedTableTab" caption="msg://expected"
+                             margin="true,false,false,false">
+                            <vbox id="expectedTableContainer"
+                                  width="100%"
+                                  height="350px"/>
+                        </tab>
+                        <tab id="actualTableTab" caption="msg://actual"
+                             margin="true,false,false,false">
+                            <vbox id="actualTableContainer"
+                                  width="100%"
+                                  height="350px"/>
+
+                        </tab>
+                    </tabSheet>
+
+                </vbox>
+            </tab>
+            <tab id="error"
+                 caption="msg://error"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <vbox id="errorContent"
+                      height="100%"
+                      spacing="true">
+                    <textArea id="errorTextArea"
+                              caption="msg://error"
+                              datasource="teststepResultDs"
+                              editable="false"
+                              height="100%"
+                              property="error"
+                              width="100%"/>
+                    <textArea id="stacktraceTextArea"
+                              caption="msg://stacktrace"
+                              datasource="teststepResultDs"
+                              editable="false"
+                              height="100%"
+                              property="stacktrace"
+                              width="100%"/>
+                </vbox>
+            </tab>
+        </tabSheet>
         <frame id="windowActions"
                screen="editWindowActions"/>
     </layout>

@@ -35,7 +35,7 @@
                        property="action"/>
                 <field optionsDatasource="scriptsDs"
                        property="script"/>
-                <field property="resultType"/>
+                <field property="resultType" custom="true"/>
             </column>
         </fieldGroup>
         <frame id="windowActions"
