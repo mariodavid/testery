@@ -68,7 +68,7 @@ class TestcaseEdit extends AbstractEditor<Testcase> {
             }
         })
 
-        stepsTable.addGeneratedColumn("result", new Table.ColumnGenerator<Teststep>() {
+        stepsTable.addGeneratedColumn("Result", new Table.ColumnGenerator<Teststep>() {
             @Override
             Component generateCell(Teststep entity) {
 
