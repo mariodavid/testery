@@ -1,16 +1,15 @@
-package de.diedavids.testery.web.testaction.actionscript;
+package de.diedavids.testery.web.testaction.actionscript
 
-import com.haulmont.cuba.gui.components.AbstractEditor;
-import com.haulmont.cuba.gui.components.FieldGroup;
+import com.haulmont.cuba.gui.components.AbstractEditor
+import com.haulmont.cuba.gui.components.FieldGroup
 import com.haulmont.cuba.gui.components.LookupField
 import com.haulmont.cuba.gui.data.Datasource
-import com.haulmont.cuba.gui.xml.layout.ComponentsFactory;
+import com.haulmont.cuba.gui.xml.layout.ComponentsFactory
 import de.diedavids.testery.entity.testaction.ActionScript
 import de.diedavids.testery.entity.teststep.result.TeststepResult
 import de.diedavids.testery.web.metadata.MetadataSelector
 
-import javax.inject.Inject;
-import java.util.Map;
+import javax.inject.Inject
 
 public class ActionScriptEdit extends AbstractEditor<ActionScript> {
 
