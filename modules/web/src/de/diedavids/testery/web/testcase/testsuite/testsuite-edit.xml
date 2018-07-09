@@ -40,11 +40,6 @@
                   caption="msg://de.diedavids.testery.entity.testcase/Testsuite.testcases">
             <table id="testcasesTable"
                    width="100%">
-                <actions>
-                    <action id="create"/>
-                    <action id="edit"/>
-                    <action id="remove"/>
-                </actions>
                 <columns>
                     <column id="testcaseId"/>
                     <column id="name"/>
@@ -53,11 +48,6 @@
                     <column id="comment"/>
                 </columns>
                 <rows datasource="testcasesDs"/>
-                <buttonsPanel>
-                    <button action="testcasesTable.create"/>
-                    <button action="testcasesTable.edit"/>
-                    <button action="testcasesTable.remove"/>
-                </buttonsPanel>
             </table>
         </groupBox>
         <frame id="windowActions"

@@ -9,13 +9,6 @@
         <datasource id="teststepDs"
                     class="de.diedavids.testery.entity.teststep.Teststep"
                     view="teststep-view"/>
-        <collectionDatasource id="testcasesDs"
-                              class="de.diedavids.testery.entity.testcase.Testcase"
-                              view="_minimal">
-            <query>
-                <![CDATA[select e from testery$Testcase e]]>
-            </query>
-        </collectionDatasource>
         <collectionDatasource id="actionsDs"
                               class="de.diedavids.testery.entity.testaction.Testaction"
                               view="_minimal">
@@ -24,24 +17,13 @@
             </query>
         </collectionDatasource>
     </dsContext>
-    <dialogMode height="600"
-                width="800"/>
     <layout expand="windowActions"
             spacing="true">
         <fieldGroup id="fieldGroup"
                     datasource="teststepDs">
             <column width="250px">
-                <field optionsDatasource="testcasesDs"
-                       property="testcase"/>
-                <field property="position"/>
                 <field optionsDatasource="actionsDs"
                        property="action"/>
-                <field property="executed"/>
-                <field property="executedAt"/>
-                <field property="successful"/>
-                <field property="result"/>
-                <field property="comment"
-                       rows="5"/>
             </column>
         </fieldGroup>
         <frame id="windowActions"

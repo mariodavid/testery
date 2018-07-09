@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.chile.core.annotations.NamePattern;
+import javax.validation.constraints.Pattern;
 
 @NamePattern("%s (%s)|name,code")
 @Table(name = "TESTERY_TESTSUITE")
@@ -25,6 +26,7 @@ public class Testsuite extends StandardEntity {
     @Column(name = "NAME", nullable = false)
     protected String name;
 
+    @Pattern(message = "{msg://onlyUpTo20Characters}", regexp = "^[\\w]{1,20}$")
     @CaseConversion
     @Length(min = 1, max = 20)
     @NotNull

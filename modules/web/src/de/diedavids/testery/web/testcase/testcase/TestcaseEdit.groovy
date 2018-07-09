@@ -100,7 +100,7 @@ class TestcaseEdit extends AbstractEditor<Testcase> {
     @Override
     protected void postInit() {
         super.postInit()
-        stepsTable.sort("createTs", Table.SortDirection.ASCENDING)
+        stepsTable.sort("position", Table.SortDirection.ASCENDING)
     }
 
 

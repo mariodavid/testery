@@ -21,7 +21,9 @@ import com.haulmont.chile.core.annotations.Composition;
 import de.diedavids.testery.entity.testcase.Testcase;
 
 import javax.persistence.OneToOne;
+import com.haulmont.cuba.core.entity.annotation.Listeners;
 
+@Listeners("testery_CreateTeststepEntityListener")
 @Table(name = "TESTERY_TESTSTEP")
 @Entity(name = "testery$Teststep")
 public class Teststep extends StandardEntity {

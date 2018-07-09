@@ -50,7 +50,7 @@
                     </actions>
                     <columns>
 
-                        <column id="createTs"/>
+                        <column id="position"/>
                         <column id="action"/>
                         <column id="executed"/>
                         <column id="executedAt"/>
