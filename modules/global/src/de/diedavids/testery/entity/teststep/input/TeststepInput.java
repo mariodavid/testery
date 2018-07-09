@@ -10,6 +10,12 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.annotation.Lookup;
+import com.haulmont.cuba.core.entity.annotation.LookupType;
+import de.diedavids.testery.entity.testaction.Testaction;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @NamePattern("%s|name")
 @DiscriminatorColumn(name = "DTYPE", discriminatorType = DiscriminatorType.STRING)
@@ -22,6 +28,20 @@ public class TeststepInput extends StandardEntity {
     @NotNull
     @Column(name = "NAME", nullable = false)
     protected String name;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TESTACTION_ID")
+    protected Testaction testaction;
+
+    public void setTestaction(Testaction testaction) {
+        this.testaction = testaction;
+    }
+
+    public Testaction getTestaction() {
+        return testaction;
+    }
+
 
     public void setName(String name) {
         this.name = name;

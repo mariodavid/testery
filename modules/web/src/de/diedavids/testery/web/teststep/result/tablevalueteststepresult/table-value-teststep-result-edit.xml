@@ -29,7 +29,7 @@
                 </fieldGroup>
                 <vbox id="expectedActualHBox"
                       width="100%">
-                    <tabSheet width="100%">
+                    <tabSheet id="expectedActualTabSheet" width="100%">
                         <tab id="expectedTableTab"
                              caption="msg://expected"
                              margin="true,false,false,false">
@@ -49,26 +49,35 @@
             </tab>
             <tab id="error"
                  caption="msg://error"
+                 expand="errorAccordion"
                  margin="true,false,false,false"
-                 spacing="true">
-                <vbox id="errorContent"
-                      height="100%"
-                      spacing="true">
-                    <textArea id="errorTextArea"
-                              caption="msg://error"
-                              datasource="teststepResultDs"
-                              editable="false"
-                              height="100%"
-                              property="error"
-                              width="100%"/>
-                    <textArea id="stacktraceTextArea"
-                              caption="msg://stacktrace"
-                              datasource="teststepResultDs"
-                              editable="false"
-                              height="100%"
-                              property="stacktrace"
-                              width="100%"/>
-                </vbox>
+            >
+                <accordion id="errorAccordion" width="100%">
+                    <tab id="errorTab"
+                         spacing="true"
+
+                         caption="msg://error"
+                         expand="errorTextArea">
+                        <textArea id="errorTextArea"
+                                  datasource="teststepResultDs"
+                                  editable="false"
+                                  property="error"
+                                  width="100%"/>
+
+                    </tab>
+                    <tab id="stacktraceTab"
+                         spacing="true"
+
+                         caption="msg://stacktrace"
+                         expand="stacktraceTextArea">
+                        <textArea id="stacktraceTextArea"
+                                  datasource="teststepResultDs"
+                                  editable="false"
+                                  property="stacktrace"
+                                  width="100%"/>
+
+                    </tab>
+                </accordion>
             </tab>
         </tabSheet>
         <frame id="windowActions"

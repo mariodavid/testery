@@ -8,7 +8,7 @@
     <dsContext>
         <groupDatasource id="jsonTeststepInputsDs"
                          class="de.diedavids.testery.entity.teststep.input.JsonTeststepInput"
-                         view="_local">
+                         view="input-view">
             <query>
                 <![CDATA[select e from testery$JsonTeststepInput e]]>
             </query>
@@ -32,6 +32,7 @@
             </actions>
             <columns>
                 <column id="name"/>
+                <column id="testaction"/>
             </columns>
             <rows datasource="jsonTeststepInputsDs"/>
             <rowsCount/>

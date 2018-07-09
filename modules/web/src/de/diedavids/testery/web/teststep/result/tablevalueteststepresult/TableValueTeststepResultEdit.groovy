@@ -2,6 +2,7 @@ package de.diedavids.testery.web.teststep.result.tablevalueteststepresult
 
 import com.haulmont.cuba.gui.components.AbstractEditor
 import com.haulmont.cuba.gui.components.BoxLayout
+import com.haulmont.cuba.gui.components.TabSheet
 import com.haulmont.cuba.gui.xml.layout.ComponentsFactory
 import de.diedavids.testery.entity.teststep.result.TableValueTeststepResult
 
@@ -15,6 +16,10 @@ class TableValueTeststepResultEdit extends AbstractEditor<TableValueTeststepResu
     @Inject
     BoxLayout actualTableContainer
 
+
+    @Inject
+    TabSheet expectedActualTabSheet
+
     @Inject
     ComponentsFactory componentsFactory
 
@@ -22,24 +27,43 @@ class TableValueTeststepResultEdit extends AbstractEditor<TableValueTeststepResu
     @Override
     protected void postInit() {
         super.postInit()
-        displayTable(item.expectedTable, expectedTableContainer)
-        displayTable(item.actualTable, actualTableContainer)
+        def tableCreated = []
+        tableCreated << displayTable(item.expectedTable, expectedTableContainer , "expectedTableTab")
+        tableCreated << displayTable(item.actualTable, actualTableContainer, "actualTableTab")
+
+        if (tableCreated.every {!it}) {
+            expectedActualTabSheet.visible = false
+        }
+
     }
 
-    protected void displayTable(String dataToConvert, BoxLayout containerToUse) {
-        createDynamicTableCreator().createTable(convertToImportData(dataToConvert), containerToUse)
+    protected boolean displayTable(String dataToConvert, BoxLayout containerToUse, String tabId) {
+        def importData = convertToImportData(dataToConvert)
+        if (importData) {
+            createDynamicTableCreator().createTable(importData, containerToUse)
+            true
+        }
+        else {
+            expectedActualTabSheet.getTab(tabId).visible = false
+            false
+        }
     }
 
     private DynamicTableCreator createDynamicTableCreator() {
         new DynamicTableCreator(
-            dsContext: dsContext,
-            frame: frame,
-            componentsFactory: componentsFactory
+                dsContext: dsContext,
+                frame: frame,
+                componentsFactory: componentsFactory
         )
     }
 
 
     protected ImportData convertToImportData(String dataToConvert) {
-        new JsonImportDataConverter().convert(dataToConvert)
+        if (dataToConvert) {
+            new JsonImportDataConverter().convert(dataToConvert)
+        }
+        else {
+            null
+        }
     }
 }

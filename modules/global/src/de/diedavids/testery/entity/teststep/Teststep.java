@@ -37,7 +37,8 @@ public class Teststep extends StandardEntity {
     @JoinColumn(name = "TESTCASE_ID")
     protected Testcase testcase;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "INPUT_ID")
     protected TeststepInput input;
 

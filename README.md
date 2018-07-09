@@ -10,4 +10,21 @@ Efficient exploratory testing with as much automation as possible
 
 ## Usage
 
+
+#### List of testcases
+![1-testcase-browse](https://github.com/mariodavid/rtcab-ordermanagement/blob/master/img/1-testcase-browse.png)
+
+#### Testcase details
+![2-testcase-editor](https://github.com/mariodavid/rtcab-ordermanagement/blob/master/img/2-testcase-editor.png)
+
+#### generic Input of teststep
+![3-teststep-input](https://github.com/mariodavid/rtcab-ordermanagement/blob/master/img/3-teststep-input.png)
+
+#### result of teststeo
+![4-teststep-result](https://github.com/mariodavid/rtcab-ordermanagement/blob/master/img/4-teststep-result.png)
+
+#### definition of testscript
+![5-testscript-editor](https://github.com/mariodavid/rtcab-ordermanagement/blob/master/img/5-testscript-editor.png)
+
+
 ### Example usage

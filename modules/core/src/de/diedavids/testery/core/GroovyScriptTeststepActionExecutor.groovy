@@ -29,10 +29,10 @@ class GroovyScriptTeststepActionExecutor implements TeststepActionExecutor {
 
 
     @Override
-    void execute(Teststep teststep, TeststepResult teststepResult) {
+    void execute(Teststep teststep, TeststepInput teststepInput, TeststepResult teststepResult) {
 
 
-        Closure createJsonResult = {Map params ->
+        Closure createJsonResult = { Map params ->
 
             JsonTeststepResult jsonTeststepResult = (JsonTeststepResult) teststepResult
             jsonTeststepResult.summary = params.summary as String
@@ -42,20 +42,23 @@ class GroovyScriptTeststepActionExecutor implements TeststepActionExecutor {
 
         }
 
-        Closure createTableResult = {Map params ->
+        Closure createTableResult = { Map params ->
 
             TableValueTeststepResult tableValueTeststepResult = (TableValueTeststepResult) teststepResult
             tableValueTeststepResult.summary = params.summary as String
 
-            tableValueTeststepResult.expectedTable = mapAsJson(params.expected as List)
-            tableValueTeststepResult.actualTable = mapAsJson(params.actual as List)
-
+            if (params.expected) {
+                tableValueTeststepResult.expectedTable = mapAsJson(params.expected as List)
+            }
+            if (params.actual) {
+                tableValueTeststepResult.actualTable = mapAsJson(params.actual as List)
+            }
         }
 
         scripting.evaluateGroovy(actionGroovyScript, new Binding(
                 dataManager: dataManager,
                 teststep: teststep,
-                input: getTeststepInput(teststep),
+                input: getTeststepInput(teststepInput),
                 testaction: actionTestscript.action,
                 result: teststepResult,
                 jsonResult: createJsonResult,
@@ -64,14 +67,12 @@ class GroovyScriptTeststepActionExecutor implements TeststepActionExecutor {
 
     }
 
-    def getTeststepInput(Teststep teststep) {
+    def getTeststepInput(TeststepInput teststepInput) {
 
-        def input = teststep.input
-        if (input instanceof JsonTeststepInput) {
-            new JsonSlurper().parseText(input.input)
-        }
-        else {
-            input
+        if (teststepInput instanceof JsonTeststepInput) {
+            new JsonSlurper().parseText(teststepInput.input)
+        } else {
+            teststepInput
         }
     }
 
@@ -95,7 +96,6 @@ ${actionTestscript.script.script}
 
 
     }
-
 
 
     @Override

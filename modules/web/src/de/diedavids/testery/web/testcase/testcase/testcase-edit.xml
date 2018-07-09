@@ -33,6 +33,7 @@
                  spacing="true">
                 <table id="stepsTable"
                        height="100%"
+                       editable="true"
                        width="100%">
                     <actions>
                         <action id="create"

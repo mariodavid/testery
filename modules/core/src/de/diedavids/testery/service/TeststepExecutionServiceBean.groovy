@@ -6,6 +6,7 @@ import de.diedavids.testery.core.GroovyScriptTeststepActionExecutor
 import de.diedavids.testery.data.SimpleDataLoader
 import de.diedavids.testery.entity.testaction.ActionScript
 import de.diedavids.testery.entity.teststep.Teststep
+import de.diedavids.testery.entity.teststep.input.TeststepInput
 import de.diedavids.testery.entity.teststep.result.TeststepResult
 import groovy.util.logging.Slf4j
 import org.apache.commons.lang3.exception.ExceptionUtils
@@ -40,13 +41,14 @@ class TeststepExecutionServiceBean implements TeststepExecutionService {
     void executeTeststep(Teststep teststep) {
 
         ActionScript actionTestscript = simpleDataLoader.loadByReference(ActionScript, "action", teststep.action, "actionScript-view")
+        TeststepInput teststepInput = dataManager.reload(teststep.input, "input-view")
 
         TeststepActionExecutor teststepActionExecutor = findTeststepActionExecutor(teststep, actionTestscript);
 
 
         TeststepResult teststepResult = createTeststepResult(actionTestscript)
         try {
-            teststepActionExecutor.execute(teststep, teststepResult);
+            teststepActionExecutor.execute(teststep, teststepInput, teststepResult);
             teststep = dataManager.reload(teststep, 'teststep-view')
             teststep.result = teststepResult
             teststep.executed = true
@@ -60,6 +62,7 @@ class TeststepExecutionServiceBean implements TeststepExecutionService {
             teststep.result = teststepResult
 
             teststepResult.stacktrace = ExceptionUtils.getStackTrace(e)
+            teststepResult.summary = "Error"
             dataManager.commit(teststepResult)
 
             teststep.executed = true

@@ -49,7 +49,7 @@ create table TESTERY_TESTSTEP (
     DELETED_BY varchar(50),
     --
     TESTCASE_ID varchar(36) not null,
-    INPUT_ID varchar(36),
+    INPUT_ID varchar(36) not null,
     POSITION_ integer not null,
     ACTION_ID varchar(36) not null,
     EXECUTED boolean not null,
@@ -155,6 +155,7 @@ create table TESTERY_TESTSTEP_INPUT (
     DTYPE varchar(31),
     --
     NAME varchar(255) not null,
+    TESTACTION_ID varchar(36),
     --
     primary key (ID)
 )^

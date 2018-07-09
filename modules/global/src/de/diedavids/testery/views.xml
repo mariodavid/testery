@@ -45,4 +45,16 @@
     <view class="de.diedavids.testery.entity.teststep.result.JsonTeststepResult"
           extends="_local"
           name="result-view"/>
+    <view class="de.diedavids.testery.entity.teststep.input.TeststepInput"
+          extends="_local"
+          name="input-view">
+        <property name="testaction"
+                  view="_minimal"/>
+    </view>
+    <view class="de.diedavids.testery.entity.teststep.input.JsonTeststepInput"
+          extends="_local"
+          name="input-view">
+        <property name="testaction"
+                  view="_minimal"/>
+    </view>
 </views>

@@ -8,7 +8,14 @@
     <dsContext>
         <datasource id="teststepInputDs"
                     class="de.diedavids.testery.entity.teststep.input.TeststepInput"
-                    view="_local"/>
+                    view="input-view"/>
+        <collectionDatasource id="testactionsDs"
+                              class="de.diedavids.testery.entity.testaction.Testaction"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from testery$Testaction e]]>
+            </query>
+        </collectionDatasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
@@ -18,6 +25,8 @@
                     datasource="teststepInputDs">
             <column width="250px">
                 <field property="name"/>
+                <field optionsDatasource="testactionsDs"
+                       property="testaction"/>
             </column>
         </fieldGroup>
         <frame id="windowActions"

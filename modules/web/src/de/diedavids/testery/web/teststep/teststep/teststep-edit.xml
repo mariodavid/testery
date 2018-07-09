@@ -16,6 +16,13 @@
                 <![CDATA[select e from testery$Testaction e]]>
             </query>
         </collectionDatasource>
+        <collectionDatasource id="inputsDs"
+                              class="de.diedavids.testery.entity.teststep.input.TeststepInput"
+                              view="input-view">
+            <query>
+                <![CDATA[select e from testery$TeststepInput e where e.testaction.id = :ds$actionsDs]]>
+            </query>
+        </collectionDatasource>
     </dsContext>
     <layout expand="windowActions"
             spacing="true">
@@ -24,7 +31,9 @@
             <column width="250px">
                 <field optionsDatasource="actionsDs"
                        property="action"/>
-                <field property="input"/>
+                <field property="input"
+                       optionsDatasource="inputsDs"
+                />
             </column>
         </fieldGroup>
         <frame id="windowActions"
