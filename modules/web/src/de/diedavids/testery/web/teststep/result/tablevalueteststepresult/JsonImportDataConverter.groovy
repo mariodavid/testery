@@ -18,7 +18,6 @@ class JsonImportDataConverter extends AbstractTextBasedImportDataConverter<Objec
         new JsonSlurper().parseText(content)
     }
 
-
     private List<String> getColumns(it) {
         new ArrayList(it.keySet())
     }

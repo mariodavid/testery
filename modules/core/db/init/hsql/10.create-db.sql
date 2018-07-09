@@ -49,6 +49,7 @@ create table TESTERY_TESTSTEP (
     DELETED_BY varchar(50),
     --
     TESTCASE_ID varchar(36) not null,
+    INPUT_ID varchar(36),
     POSITION_ integer not null,
     ACTION_ID varchar(36) not null,
     EXECUTED boolean not null,
@@ -141,3 +142,29 @@ create table TESTERY_TESTSCRIPT (
     primary key (ID)
 )^
 -- end TESTERY_TESTSCRIPT
+-- begin TESTERY_TESTSTEP_INPUT
+create table TESTERY_TESTSTEP_INPUT (
+    ID varchar(36) not null,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    DTYPE varchar(31),
+    --
+    NAME varchar(255) not null,
+    --
+    primary key (ID)
+)^
+-- end TESTERY_TESTSTEP_INPUT
+-- begin TESTERY_JSON_TESTSTEP_INPUT
+create table TESTERY_JSON_TESTSTEP_INPUT (
+    ID varchar(36) not null,
+    --
+    INPUT_ longvarchar,
+    --
+    primary key (ID)
+)^
+-- end TESTERY_JSON_TESTSTEP_INPUT

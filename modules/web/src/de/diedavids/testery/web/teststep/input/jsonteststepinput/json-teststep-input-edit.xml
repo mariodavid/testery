@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.testery.web.teststep.input.jsonteststepinput.JsonTeststepInputEdit"
+        datasource="teststepInputDs"
+        focusComponent="inputSourceCodeEditor"
+        messagesPack="de.diedavids.testery.web.teststep.input.jsonteststepinput">
+    <dsContext>
+        <datasource id="teststepInputDs"
+                    class="de.diedavids.testery.entity.teststep.input.JsonTeststepInput"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="inputSourceCodeEditor"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="teststepInputDs">
+            <column width="250px">
+                <field property="name"/>
+            </column>
+        </fieldGroup>
+        <sourceCodeEditor id="inputSourceCodeEditor"
+                          caption="msg://input"
+                          datasource="teststepInputDs"
+                          mode="JavaScript"
+                          property="input"
+                          width="100%"/>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

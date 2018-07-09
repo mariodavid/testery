@@ -24,6 +24,8 @@
                   view="_minimal"/>
         <property name="result"
                   view="result-view"/>
+        <property name="input"
+                  view="_minimal"/>
     </view>
     <view class="de.diedavids.testery.entity.teststep.result.TeststepResult"
           extends="_local"

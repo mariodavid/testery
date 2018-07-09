@@ -4,6 +4,7 @@
           insertBefore="administration">
         <item screen="testery$Testsuite.browse"/>
         <item screen="testery$Testcase.browse"/>
+        <item screen="testery$JsonTeststepInput.browse"/>
     </menu>
     <menu id="application-testery-masterdata"
           insertBefore="administration">

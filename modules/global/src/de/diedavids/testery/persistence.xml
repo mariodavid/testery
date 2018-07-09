@@ -13,5 +13,7 @@
         <class>de.diedavids.testery.entity.teststep.result.SingleValueTeststepResult</class>
         <class>de.diedavids.testery.entity.teststep.result.TableValueTeststepResult</class>
         <class>de.diedavids.testery.entity.teststep.result.JsonTeststepResult</class>
+        <class>de.diedavids.testery.entity.teststep.input.TeststepInput</class>
+        <class>de.diedavids.testery.entity.teststep.input.JsonTeststepInput</class>
     </persistence-unit>
 </persistence>

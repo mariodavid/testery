@@ -49,7 +49,6 @@
                                 trackSelection="true"/>
                     </actions>
                     <columns>
-
                         <column id="position"/>
                         <column id="action"/>
                         <column id="executed"/>
@@ -58,6 +57,10 @@
                                 editable="true"/>
                         <column id="successful"
                                 editable="true"/>
+                        <column id="input"
+                                link="true"
+                                linkScreenOpenType="DIALOG"
+                        />
                     </columns>
                     <rows datasource="stepsDs"/>
                     <buttonsPanel>
@@ -69,26 +72,23 @@
             </tab>
             <tab id="descriptionTab"
                  caption="msg://description"
-                 margin="true,false,false,false"
                  expand="descriptionTextArea"
+                 margin="true,false,false,false"
                  spacing="true">
                 <textArea id="descriptionTextArea"
-                          width="100%"
                           datasource="testcaseDs"
                           property="description"
-                          />
+                          width="100%"/>
             </tab>
             <tab id="commentTab"
                  caption="msg://comment"
-                 margin="true,false,false,false"
-
                  expand="commentTextArea"
+                 margin="true,false,false,false"
                  spacing="true">
                 <textArea id="commentTextArea"
-                          width="100%"
                           datasource="testcaseDs"
                           property="comment"
-                />
+                          width="100%"/>
             </tab>
         </tabSheet>
         <frame id="windowActions"

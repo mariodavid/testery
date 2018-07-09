@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://browseCaption"
-        class="de.diedavids.testery.web.testcase.testcase.TestcaseBrowse"
-        focusComponent="testcasesTable"
-        lookupComponent="testcasesTable"
-        messagesPack="de.diedavids.testery.web.testcase.testcase">
+        class="de.diedavids.testery.web.teststep.input.jsonteststepinput.JsonTeststepInputBrowse"
+        focusComponent="jsonTeststepInputsTable"
+        lookupComponent="jsonTeststepInputsTable"
+        messagesPack="de.diedavids.testery.web.teststep.input.jsonteststepinput">
     <dsContext>
-        <groupDatasource id="testcasesDs"
-                         class="de.diedavids.testery.entity.testcase.Testcase"
-                         view="testcase-view">
+        <groupDatasource id="jsonTeststepInputsDs"
+                         class="de.diedavids.testery.entity.teststep.input.JsonTeststepInput"
+                         view="_local">
             <query>
-                <![CDATA[select e from testery$Testcase e]]>
+                <![CDATA[select e from testery$JsonTeststepInput e]]>
             </query>
         </groupDatasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="testcasesTable"
+    <layout expand="jsonTeststepInputsTable"
             spacing="true">
         <filter id="filter"
-                applyTo="testcasesTable"
-                datasource="testcasesDs">
+                applyTo="jsonTeststepInputsTable"
+                datasource="jsonTeststepInputsDs">
             <properties include=".*"/>
         </filter>
-        <groupTable id="testcasesTable"
+        <groupTable id="jsonTeststepInputsTable"
                     width="100%">
             <actions>
                 <action id="create"/>
@@ -31,21 +31,18 @@
                 <action id="remove"/>
             </actions>
             <columns>
-                <column id="testcaseId"/>
                 <column id="name"/>
-                <column id="description" maxTextLength="30"/>
-                <column id="successful"/>
             </columns>
-            <rows datasource="testcasesDs"/>
+            <rows datasource="jsonTeststepInputsDs"/>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createBtn"
-                        action="testcasesTable.create"/>
+                        action="jsonTeststepInputsTable.create"/>
                 <button id="editBtn"
-                        action="testcasesTable.edit"/>
+                        action="jsonTeststepInputsTable.edit"/>
                 <button id="removeBtn"
-                        action="testcasesTable.remove"/>
+                        action="jsonTeststepInputsTable.remove"/>
             </buttonsPanel>
         </groupTable>
     </layout>

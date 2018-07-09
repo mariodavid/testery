@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://browseCaption"
-        class="de.diedavids.testery.web.testcase.testcase.TestcaseBrowse"
-        focusComponent="testcasesTable"
-        lookupComponent="testcasesTable"
-        messagesPack="de.diedavids.testery.web.testcase.testcase">
+        class="de.diedavids.testery.web.teststep.input.teststepinput.TeststepInputBrowse"
+        focusComponent="teststepInputsTable"
+        lookupComponent="teststepInputsTable"
+        messagesPack="de.diedavids.testery.web.teststep.input.teststepinput">
     <dsContext>
-        <groupDatasource id="testcasesDs"
-                         class="de.diedavids.testery.entity.testcase.Testcase"
-                         view="testcase-view">
+        <groupDatasource id="teststepInputsDs"
+                         class="de.diedavids.testery.entity.teststep.input.TeststepInput"
+                         view="_local">
             <query>
-                <![CDATA[select e from testery$Testcase e]]>
+                <![CDATA[select e from testery$TeststepInput e]]>
             </query>
         </groupDatasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="testcasesTable"
+    <layout expand="teststepInputsTable"
             spacing="true">
         <filter id="filter"
-                applyTo="testcasesTable"
-                datasource="testcasesDs">
+                applyTo="teststepInputsTable"
+                datasource="teststepInputsDs">
             <properties include=".*"/>
         </filter>
-        <groupTable id="testcasesTable"
+        <groupTable id="teststepInputsTable"
                     width="100%">
             <actions>
                 <action id="create"/>
@@ -31,21 +31,18 @@
                 <action id="remove"/>
             </actions>
             <columns>
-                <column id="testcaseId"/>
                 <column id="name"/>
-                <column id="description" maxTextLength="30"/>
-                <column id="successful"/>
             </columns>
-            <rows datasource="testcasesDs"/>
+            <rows datasource="teststepInputsDs"/>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createBtn"
-                        action="testcasesTable.create"/>
+                        action="teststepInputsTable.create"/>
                 <button id="editBtn"
-                        action="testcasesTable.edit"/>
+                        action="teststepInputsTable.edit"/>
                 <button id="removeBtn"
-                        action="testcasesTable.remove"/>
+                        action="teststepInputsTable.remove"/>
             </buttonsPanel>
         </groupTable>
     </layout>

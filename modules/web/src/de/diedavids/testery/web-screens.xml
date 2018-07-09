@@ -34,4 +34,12 @@
             template="/de/diedavids/testery/web/teststep/result/singlevalueteststepresult/single-value-teststep-result-edit.xml"/>
     <screen id="testery$JsonTeststepResult.edit"
             template="/de/diedavids/testery/web/teststep/result/jsonteststepresult/json-teststep-result-edit.xml"/>
+    <screen id="testery$JsonTeststepInput.browse"
+            template="de/diedavids/testery/web/teststep/input/jsonteststepinput/json-teststep-input-browse.xml"/>
+    <screen id="testery$JsonTeststepInput.edit"
+            template="de/diedavids/testery/web/teststep/input/jsonteststepinput/json-teststep-input-edit.xml"/>
+    <screen id="testery$TeststepInput.browse"
+            template="de/diedavids/testery/web/teststep/input/teststepinput/teststep-input-browse.xml"/>
+    <screen id="testery$TeststepInput.edit"
+            template="de/diedavids/testery/web/teststep/input/teststepinput/teststep-input-edit.xml"/>
 </screen-config>

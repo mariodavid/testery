@@ -24,6 +24,7 @@
             <column width="250px">
                 <field optionsDatasource="actionsDs"
                        property="action"/>
+                <field property="input"/>
             </column>
         </fieldGroup>
         <frame id="windowActions"

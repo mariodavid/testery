@@ -23,6 +23,7 @@ import de.diedavids.testery.entity.testcase.Testcase;
 import javax.persistence.OneToOne;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
 import de.diedavids.testery.entity.teststep.result.TeststepResult;
+import de.diedavids.testery.entity.teststep.input.TeststepInput;
 
 @Listeners("testery_CreateTeststepEntityListener")
 @Table(name = "TESTERY_TESTSTEP")
@@ -35,6 +36,10 @@ public class Teststep extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "TESTCASE_ID")
     protected Testcase testcase;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "INPUT_ID")
+    protected TeststepInput input;
 
     @NotNull
     @Column(name = "POSITION_", nullable = false)
@@ -67,6 +72,15 @@ public class Teststep extends StandardEntity {
     @Lob
     @Column(name = "COMMENT_")
     protected String comment;
+
+    public void setInput(TeststepInput input) {
+        this.input = input;
+    }
+
+    public TeststepInput getInput() {
+        return input;
+    }
+
 
     public TeststepResult getResult() {
         return result;
