@@ -1,4 +1,4 @@
-package de.diedavids.testery.web.teststep.table.tablevalueteststepresult
+package de.diedavids.testery.web.teststep.result.tablevalueteststepresult
 
 abstract class AbstractTextBasedImportDataConverter<T> implements ImportDataConverter {
 

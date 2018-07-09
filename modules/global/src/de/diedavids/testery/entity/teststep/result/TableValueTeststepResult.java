@@ -1,8 +1,7 @@
-package de.diedavids.testery.entity.teststep.table;
+package de.diedavids.testery.entity.teststep.result;
 
-import javax.persistence.Entity;
-import de.diedavids.testery.entity.teststep.TeststepResult;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Lob;
 
 @Entity(name = "testery$TableValueTeststepResult")

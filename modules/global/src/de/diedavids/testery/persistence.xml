@@ -7,11 +7,11 @@
         <class>de.diedavids.testery.entity.testcase.Testsuite</class>
         <class>de.diedavids.testery.entity.teststep.Teststep</class>
         <class>de.diedavids.testery.entity.testaction.Testaction</class>
-        <class>de.diedavids.testery.entity.teststep.TeststepResult</class>
+        <class>de.diedavids.testery.entity.teststep.result.TeststepResult</class>
         <class>de.diedavids.testery.entity.testaction.ActionScript</class>
         <class>de.diedavids.testery.entity.testaction.Testscript</class>
-        <class>de.diedavids.testery.entity.teststep.SingleValueTeststepResult</class>
-        <class>de.diedavids.testery.entity.teststep.table.TableValueTeststepResult</class>
-        <class>de.diedavids.testery.entity.teststep.JsonTeststepResult</class>
+        <class>de.diedavids.testery.entity.teststep.result.SingleValueTeststepResult</class>
+        <class>de.diedavids.testery.entity.teststep.result.TableValueTeststepResult</class>
+        <class>de.diedavids.testery.entity.teststep.result.JsonTeststepResult</class>
     </persistence-unit>
 </persistence>

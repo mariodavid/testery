@@ -19,7 +19,7 @@
     <screen id="testery$Teststep.edit"
             template="/de/diedavids/testery/web/teststep/teststep/teststep-edit.xml"/>
     <screen id="testery$TeststepResult.edit"
-            template="/de/diedavids/testery/web/teststep/teststepresult/teststep-result-edit.xml"/>
+            template="/de/diedavids/testery/web/teststep/result/teststepresult/teststep-result-edit.xml"/>
     <screen id="mainWindow"
             template="de/diedavids/testery/web/screens/ext-mainwindow.xml"/>
     <screen id="testery$Testcase.browse"
@@ -29,9 +29,9 @@
     <screen id="testery$Testcase.edit"
             template="/de/diedavids/testery/web/testcase/testcase/testcase-edit.xml"/>
     <screen id="testery$TableValueTeststepResult.edit"
-            template="de/diedavids/testery/web/teststep/table/tablevalueteststepresult/table-value-teststep-result-edit.xml"/>
+            template="/de/diedavids/testery/web/teststep/result/tablevalueteststepresult/table-value-teststep-result-edit.xml"/>
     <screen id="testery$SingleValueTeststepResult.edit"
-            template="de/diedavids/testery/web/teststep/singlevalueteststepresult/single-value-teststep-result-edit.xml"/>
+            template="/de/diedavids/testery/web/teststep/result/singlevalueteststepresult/single-value-teststep-result-edit.xml"/>
     <screen id="testery$JsonTeststepResult.edit"
-            template="de/diedavids/testery/web/teststep/jsonteststepresult/json-teststep-result-edit.xml"/>
+            template="/de/diedavids/testery/web/teststep/result/jsonteststepresult/json-teststep-result-edit.xml"/>
 </screen-config>

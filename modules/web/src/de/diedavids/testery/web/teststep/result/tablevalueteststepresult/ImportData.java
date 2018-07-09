@@ -1,4 +1,4 @@
-package de.diedavids.testery.web.teststep.table.tablevalueteststepresult;
+package de.diedavids.testery.web.teststep.result.tablevalueteststepresult;
 
 import java.io.Serializable;
 import java.util.List;

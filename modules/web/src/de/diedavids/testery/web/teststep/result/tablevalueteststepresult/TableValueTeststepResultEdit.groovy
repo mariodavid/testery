@@ -1,9 +1,9 @@
-package de.diedavids.testery.web.teststep.table.tablevalueteststepresult
+package de.diedavids.testery.web.teststep.result.tablevalueteststepresult
 
 import com.haulmont.cuba.gui.components.AbstractEditor
 import com.haulmont.cuba.gui.components.BoxLayout
 import com.haulmont.cuba.gui.xml.layout.ComponentsFactory
-import de.diedavids.testery.entity.teststep.table.TableValueTeststepResult
+import de.diedavids.testery.entity.teststep.result.TableValueTeststepResult
 
 import javax.inject.Inject
 

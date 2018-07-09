@@ -6,7 +6,7 @@ import com.haulmont.cuba.gui.components.LookupField
 import com.haulmont.cuba.gui.data.Datasource
 import com.haulmont.cuba.gui.xml.layout.ComponentsFactory;
 import de.diedavids.testery.entity.testaction.ActionScript
-import de.diedavids.testery.entity.teststep.TeststepResult
+import de.diedavids.testery.entity.teststep.result.TeststepResult
 import de.diedavids.testery.web.metadata.MetadataSelector
 
 import javax.inject.Inject;

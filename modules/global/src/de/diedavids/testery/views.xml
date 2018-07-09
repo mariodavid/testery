@@ -25,7 +25,7 @@
         <property name="result"
                   view="result-view"/>
     </view>
-    <view class="de.diedavids.testery.entity.teststep.TeststepResult"
+    <view class="de.diedavids.testery.entity.teststep.result.TeststepResult"
           extends="_local"
           name="result-view"/>
     <view class="de.diedavids.testery.entity.testcase.Testsuite"
@@ -34,13 +34,13 @@
         <property name="testcases"
                   view="_local"/>
     </view>
-    <view class="de.diedavids.testery.entity.teststep.SingleValueTeststepResult"
+    <view class="de.diedavids.testery.entity.teststep.result.SingleValueTeststepResult"
           extends="_local"
           name="result-view"/>
-    <view class="de.diedavids.testery.entity.teststep.table.TableValueTeststepResult"
+    <view class="de.diedavids.testery.entity.teststep.result.TableValueTeststepResult"
           extends="_local"
           name="result-view"/>
-    <view class="de.diedavids.testery.entity.teststep.JsonTeststepResult"
+    <view class="de.diedavids.testery.entity.teststep.result.JsonTeststepResult"
           extends="_local"
           name="result-view"/>
 </views>

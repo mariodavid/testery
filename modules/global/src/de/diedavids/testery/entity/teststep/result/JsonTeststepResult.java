@@ -1,6 +1,7 @@
-package de.diedavids.testery.entity.teststep;
+package de.diedavids.testery.entity.teststep.result;
 
 import javax.persistence.Entity;
+
 
 @Entity(name = "testery$JsonTeststepResult")
 public class JsonTeststepResult extends SingleValueTeststepResult {

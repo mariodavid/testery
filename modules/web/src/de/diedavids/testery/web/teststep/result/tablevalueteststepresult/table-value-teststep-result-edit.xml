@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://editorCaption"
-        class="de.diedavids.testery.web.teststep.teststepresult.TeststepResultEdit"
+        class="de.diedavids.testery.web.teststep.result.tablevalueteststepresult.TableValueTeststepResultEdit"
         datasource="teststepResultDs"
         focusComponent="fieldGroup"
-        messagesPack="de.diedavids.testery.web.teststep.teststepresult">
+        messagesPack="de.diedavids.testery.web.teststep.result.tablevalueteststepresult">
     <dsContext>
         <datasource id="teststepResultDs"
-                    class="de.diedavids.testery.entity.teststep.TeststepResult"
+                    class="de.diedavids.testery.entity.teststep.result.TableValueTeststepResult"
                     view="result-view"/>
     </dsContext>
     <dialogMode height="600"
@@ -17,6 +17,7 @@
         <tabSheet id="contentTabSheet">
             <tab id="general"
                  caption="msg://general"
+                 expand="expectedActualHBox"
                  margin="true,false,false,false"
                  spacing="true">
                 <fieldGroup id="fieldGroup"
@@ -26,6 +27,25 @@
                                property="summary"/>
                     </column>
                 </fieldGroup>
+                <vbox id="expectedActualHBox"
+                      width="100%">
+                    <tabSheet width="100%">
+                        <tab id="expectedTableTab"
+                             caption="msg://expected"
+                             margin="true,false,false,false">
+                            <vbox id="expectedTableContainer"
+                                  height="350px"
+                                  width="100%"/>
+                        </tab>
+                        <tab id="actualTableTab"
+                             caption="msg://actual"
+                             margin="true,false,false,false">
+                            <vbox id="actualTableContainer"
+                                  height="350px"
+                                  width="100%"/>
+                        </tab>
+                    </tabSheet>
+                </vbox>
             </tab>
             <tab id="error"
                  caption="msg://error"

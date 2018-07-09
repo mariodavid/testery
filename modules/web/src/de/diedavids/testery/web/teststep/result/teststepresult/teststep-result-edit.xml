@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://editorCaption"
-        class="de.diedavids.testery.web.teststep.teststepresult.TeststepResultEdit"
+        class="de.diedavids.testery.web.teststep.result.teststepresult.TeststepResultEdit"
         datasource="teststepResultDs"
         focusComponent="fieldGroup"
-        messagesPack="de.diedavids.testery.web.teststep.teststepresult">
+        messagesPack="de.diedavids.testery.web.teststep.result.teststepresult">
     <dsContext>
         <datasource id="teststepResultDs"
-                    class="de.diedavids.testery.entity.teststep.SingleValueTeststepResult"
+                    class="de.diedavids.testery.entity.teststep.result.TeststepResult"
                     view="result-view"/>
     </dsContext>
     <dialogMode height="600"
@@ -24,16 +24,8 @@
                     <column width="250px">
                         <field editable="false"
                                property="summary"/>
-                        <field editable="false"
-                               property="expectedValue"/>
-                        <field editable="false"
-                               property="actualValue"/>
                     </column>
                 </fieldGroup>
-                <sourceCodeEditor datasource="teststepResultDs"
-                                  mode="JavaScript"
-                                  editable="false"
-                                  property="actualValue"/>
             </tab>
             <tab id="error"
                  caption="msg://error"

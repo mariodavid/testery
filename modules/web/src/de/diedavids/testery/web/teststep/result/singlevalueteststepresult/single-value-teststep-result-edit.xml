@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://editorCaption"
-        class="de.diedavids.testery.web.teststep.jsonteststepresult.JsonTeststepResultEdit"
+        class="de.diedavids.testery.web.teststep.result.teststepresult.TeststepResultEdit"
         datasource="teststepResultDs"
         focusComponent="fieldGroup"
-        messagesPack="de.diedavids.testery.web.teststep.jsonteststepresult">
+        messagesPack="de.diedavids.testery.web.teststep.result.teststepresult">
     <dsContext>
         <datasource id="teststepResultDs"
-                    class="de.diedavids.testery.entity.teststep.JsonTeststepResult"
+                    class="de.diedavids.testery.entity.teststep.result.SingleValueTeststepResult"
                     view="result-view"/>
     </dsContext>
     <dialogMode height="600"
@@ -17,7 +17,6 @@
         <tabSheet id="contentTabSheet">
             <tab id="general"
                  caption="msg://general"
-                 expand="expectedActualHBox"
                  margin="true,false,false,false"
                  spacing="true">
                 <fieldGroup id="fieldGroup"
@@ -25,27 +24,16 @@
                     <column width="250px">
                         <field editable="false"
                                property="summary"/>
+                        <field editable="false"
+                               property="expectedValue"/>
+                        <field editable="false"
+                               property="actualValue"/>
                     </column>
                 </fieldGroup>
-                    <hbox id="expectedActualHBox"
-                           width="100%">
-                        <sourceCodeEditor id="expectedValueSourceCodeEditor"
-                                          caption="msg://expected"
-                                          datasource="teststepResultDs"
-                                          editable="false"
-                                          height="100%"
-                                          mode="JavaScript"
-                                          property="expectedValue"
-                                          width="100%"/>
-                        <sourceCodeEditor id="actualValueSourceCodeEditor"
-                                          caption="msg://actual"
-                                          datasource="teststepResultDs"
-                                          editable="false"
-                                          height="100%"
-                                          mode="JavaScript"
-                                          property="actualValue"
-                                          width="100%"/>
-                    </hbox>
+                <sourceCodeEditor datasource="teststepResultDs"
+                                  editable="false"
+                                  mode="JavaScript"
+                                  property="actualValue"/>
             </tab>
             <tab id="error"
                  caption="msg://error"

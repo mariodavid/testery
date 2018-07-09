@@ -22,6 +22,7 @@ import de.diedavids.testery.entity.testcase.Testcase;
 
 import javax.persistence.OneToOne;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
+import de.diedavids.testery.entity.teststep.result.TeststepResult;
 
 @Listeners("testery_CreateTeststepEntityListener")
 @Table(name = "TESTERY_TESTSTEP")
@@ -61,19 +62,20 @@ public class Teststep extends StandardEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @OnDelete(DeletePolicy.CASCADE)
     @JoinColumn(name = "RESULT_ID")
-    protected de.diedavids.testery.entity.teststep.TeststepResult result;
+    protected TeststepResult result;
 
     @Lob
     @Column(name = "COMMENT_")
     protected String comment;
 
-    public de.diedavids.testery.entity.teststep.TeststepResult getResult() {
+    public TeststepResult getResult() {
         return result;
     }
 
-    public void setResult(de.diedavids.testery.entity.teststep.TeststepResult result) {
+    public void setResult(TeststepResult result) {
         this.result = result;
     }
+
 
 
     public Testaction getAction() {

@@ -1,4 +1,4 @@
-package de.diedavids.testery.entity.teststep;
+package de.diedavids.testery.entity.teststep.result;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

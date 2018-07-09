@@ -2,7 +2,7 @@ package de.diedavids.testery.service;
 
 import de.diedavids.testery.entity.testaction.Testaction;
 import de.diedavids.testery.entity.teststep.Teststep;
-import de.diedavids.testery.entity.teststep.TeststepResult;
+import de.diedavids.testery.entity.teststep.result.TeststepResult;
 
 public interface TeststepActionExecutor {
 

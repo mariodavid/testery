@@ -5,10 +5,10 @@ import com.haulmont.cuba.core.global.Metadata
 import com.haulmont.cuba.core.global.Scripting
 import de.diedavids.testery.entity.testaction.ActionScript
 import de.diedavids.testery.entity.testaction.Testaction
-import de.diedavids.testery.entity.teststep.JsonTeststepResult
+import de.diedavids.testery.entity.teststep.result.JsonTeststepResult
 import de.diedavids.testery.entity.teststep.Teststep
-import de.diedavids.testery.entity.teststep.TeststepResult
-import de.diedavids.testery.entity.teststep.table.TableValueTeststepResult
+import de.diedavids.testery.entity.teststep.result.TeststepResult
+import de.diedavids.testery.entity.teststep.result.TableValueTeststepResult
 import de.diedavids.testery.service.TeststepActionExecutor
 import groovy.json.JsonOutput
 

@@ -1,17 +1,12 @@
 package de.diedavids.testery.service
 
 import com.haulmont.cuba.core.Persistence
-import com.haulmont.cuba.core.global.AppBeans
-import com.haulmont.cuba.core.global.DataManager
-import com.haulmont.cuba.core.global.Metadata
-import com.haulmont.cuba.core.global.Scripting
-import com.haulmont.cuba.core.global.TimeSource
+import com.haulmont.cuba.core.global.*
 import de.diedavids.testery.core.GroovyScriptTeststepActionExecutor
 import de.diedavids.testery.data.SimpleDataLoader
 import de.diedavids.testery.entity.testaction.ActionScript
 import de.diedavids.testery.entity.teststep.Teststep
-import de.diedavids.testery.entity.teststep.TeststepResult
-import groovy.sql.Sql
+import de.diedavids.testery.entity.teststep.result.TeststepResult
 import groovy.util.logging.Slf4j
 import org.apache.commons.lang3.exception.ExceptionUtils
 import org.springframework.stereotype.Service
