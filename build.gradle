@@ -14,6 +14,10 @@ buildscript {
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
+
+
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0"
+
     }
 }
 
@@ -33,8 +37,8 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'de.diedavids.testery'
-        version = '0.1'
-        isSnapshot = true
+        version = '0.0.1'
+        isSnapshot = false
     }
     tomcat {
         dir = "$project.rootDir/deploy/tomcat"
@@ -43,6 +47,48 @@ cuba {
         vcs = 'Git'
     }
 }
+
+
+subprojects {
+    apply plugin: 'com.jfrog.bintray'
+
+    bintray {
+        user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('UPLOAD_REPOSITORY_USERNAME')
+        key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('UPLOAD_REPOSITORY_PASSWORD')
+
+        configurations = ['archives']
+
+        publish = true
+
+        override = false
+
+        // metadata
+        pkg {
+            repo = 'cuba-components'
+            name = 'testery'
+            desc = 'Efficient exploratory testing with as much automation as possible'
+            userOrg = 'mariodavid'
+
+            websiteUrl = 'https://github.com/mariodavid/testery'
+            issueTrackerUrl = 'https://github.com/mariodavid/testery/issues'
+            vcsUrl = 'https://github.com/mariodavid/testery.git'
+
+            licenses = ["Apache-2.0"]
+
+            labels = ['exploratory testing','manual testing','semi automatic testing', 'cuba-patform', 'cuba-component']
+            githubRepo = 'mariodavid/testery'
+            githubReleaseNotesFile = 'CHANGELOG.md'
+
+            version {
+                name = "${cuba.artifact.version}"
+                desc = ''
+                released = new Date()
+                vcsTag = "${cuba.artifact.version}"
+            }
+        }
+    }
+}
+
 
 dependencies {
     appComponent("com.haulmont.cuba:cuba-global:$cubaVersion")
