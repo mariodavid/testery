@@ -37,8 +37,8 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'de.diedavids.testery'
-        version = '0.0.1'
-        isSnapshot = false
+        version = '0.0.2'
+        isSnapshot = true
     }
     tomcat {
         dir = "$project.rootDir/deploy/tomcat"

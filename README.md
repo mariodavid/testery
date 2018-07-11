@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/mariodavid/testery.svg?branch=master)](https://travis-ci.com/mariodavid/testery)
+[ ![Download](https://api.bintray.com/packages/mariodavid/cuba-components/testery/images/download.svg) ](https://bintray.com/mariodavid/cuba-components/testery/_latestVersion)
 [![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
 Testery - Exploratory testing with automation
