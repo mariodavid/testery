@@ -11,4 +11,6 @@ public interface TeststepActionExecutor {
 
     boolean supports(Testaction testaction);
 
+    String getResultType();
+
 }

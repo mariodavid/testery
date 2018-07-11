@@ -102,4 +102,9 @@ ${actionTestscript.script.script}
     boolean supports(Testaction testaction) {
         return true;
     }
+
+    @Override
+    String getResultType() {
+        return null
+    }
 }

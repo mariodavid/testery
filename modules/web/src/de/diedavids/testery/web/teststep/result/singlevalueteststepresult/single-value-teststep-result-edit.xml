@@ -30,10 +30,6 @@
                                property="actualValue"/>
                     </column>
                 </fieldGroup>
-                <sourceCodeEditor datasource="teststepResultDs"
-                                  editable="false"
-                                  mode="JavaScript"
-                                  property="actualValue"/>
             </tab>
             <tab id="error"
                  caption="msg://error"

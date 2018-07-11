@@ -21,7 +21,7 @@
         <property name="testcase"
                   view="_minimal"/>
         <property name="action"
-                  view="_minimal"/>
+                  view="_base"/>
         <property name="result"
                   view="result-view"/>
         <property name="input"

@@ -2,6 +2,7 @@ package de.diedavids.testery.service
 
 import com.haulmont.cuba.core.Persistence
 import com.haulmont.cuba.core.global.*
+import com.haulmont.cuba.core.global.validation.RequiredView
 import de.diedavids.testery.core.GroovyScriptTeststepActionExecutor
 import de.diedavids.testery.data.SimpleDataLoader
 import de.diedavids.testery.entity.testaction.ActionScript
@@ -38,15 +39,23 @@ class TeststepExecutionServiceBean implements TeststepExecutionService {
     Metadata metadata
 
     @Override
-    void executeTeststep(Teststep teststep) {
+    void executeTeststep(@RequiredView("teststep-view") Teststep teststep) {
 
         ActionScript actionTestscript = simpleDataLoader.loadByReference(ActionScript, "action", teststep.action, "actionScript-view")
         TeststepInput teststepInput = dataManager.reload(teststep.input, "input-view")
 
-        TeststepActionExecutor teststepActionExecutor = findTeststepActionExecutor(teststep, actionTestscript);
+        TeststepActionExecutor teststepActionExecutor = null
 
+        TeststepResult teststepResult = null
+        if (actionTestscript) {
+            teststepActionExecutor = createScriptTeststepActionExecutor(teststep, actionTestscript, teststepActionExecutor)
+            teststepResult = createTeststepResult(actionTestscript.getResultType())
+        }
+        else {
+            teststepActionExecutor = findTeststepActionExecutorBean(teststep)
+            teststepResult = createTeststepResult(teststepActionExecutor.getResultType())
+        }
 
-        TeststepResult teststepResult = createTeststepResult(actionTestscript)
         try {
             teststepActionExecutor.execute(teststep, teststepInput, teststepResult);
             teststep = dataManager.reload(teststep, 'teststep-view')
@@ -73,43 +82,35 @@ class TeststepExecutionServiceBean implements TeststepExecutionService {
 
     }
 
+    protected GroovyScriptTeststepActionExecutor createScriptTeststepActionExecutor(Teststep teststep, ActionScript actionTestscript, TeststepActionExecutor teststepActionExecutor) {
+        teststepActionExecutor = new GroovyScriptTeststepActionExecutor(
+                teststep: teststep,
+                actionTestscript: actionTestscript,
+                dataManager: dataManager,
+                scripting: scripting,
+                metadata: metadata
+        )
+        teststepActionExecutor
+    }
 
-    protected TeststepResult createTeststepResult(ActionScript actionTestscript) {
-        TeststepResult teststepResult = metadata.create(actionTestscript.resultType)
+    protected TeststepActionExecutor findTeststepActionExecutorBean(Teststep teststep) {
+        TeststepActionExecutor result = null
+        def teststepActionExecutors = AppBeans.getAll(TeststepActionExecutor)
 
+        teststepActionExecutors.find { k, v ->
+            if (v.supports(teststep.getAction())) {
+                result = v
+            }
+        }
+
+        result
+    }
+
+
+    protected TeststepResult createTeststepResult(String resultType) {
+        TeststepResult teststepResult = metadata.create(resultType)
         teststepResult
     }
 
 
-    private TeststepActionExecutor findTeststepActionExecutor(Teststep teststep, ActionScript actionScript) {
-
-        if (actionScript) {
-            new GroovyScriptTeststepActionExecutor(
-                    teststep: teststep,
-                    actionTestscript: actionScript,
-                    dataManager: dataManager,
-                    scripting: scripting,
-                    metadata: metadata
-            )
-
-        }
-
-        else {
-
-            def teststepActionExecutors = AppBeans.getAll(TeststepActionExecutor)
-
-            TeststepActionExecutor executor = null
-            teststepActionExecutors.find { k, v ->
-                if (v.supports(teststep.getAction())) {
-                    executor = v
-                }
-            }
-
-            executor
-        }
-
-
-
-
-    }
 }

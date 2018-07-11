@@ -8,7 +8,7 @@ import java.util.UUID;
 public interface SimpleDataLoader {
 
 
-    String NAME = "inelmtate_SimpleDataLoader";
+    String NAME = "testery_SimpleDataLoader";
 
     <E extends Entity> E load(Class<E> entityClass, UUID id);
     <E extends Entity> E load(Class<E> entityClass, UUID id, String view);
