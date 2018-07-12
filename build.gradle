@@ -37,7 +37,7 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'de.diedavids.testery'
-        version = '0.0.2'
+        version = '0.0.3'
         isSnapshot = false
     }
     tomcat {
