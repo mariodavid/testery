@@ -17,6 +17,8 @@ import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import groovy.sql.Sql
 import groovy.util.logging.Slf4j
+import groovyx.net.http.FromServer
+import groovyx.net.http.HttpBuilder
 import org.springframework.stereotype.Component
 
 import javax.inject.Inject
@@ -80,6 +82,29 @@ class DefaultGroovyScriptTeststepBindingSupplier implements GroovyScriptTeststep
             new Sql(dataSource)
         }
 
+        HttpBuilder http = HttpBuilder.configure {
+
+            response.failure { FromServer response, Object body ->
+                if (response.hasBody) {
+                    teststepResult.error = """Error during HTTP communication. HTTP response: ${response.statusCode}
+-------------------------------
+response headers:
+${response.headers}
+-------------------------------
+response body:
+${body}
+"""
+                } else {
+                    teststepResult.error = "Error during HTTP communication. HTTP response: ${response.statusCode}"
+                }
+
+            }
+
+            response.exception { t ->
+                throw new TeststepHttpCommunicationException(t)
+            }
+        }
+
         [
                 dataManager     : dataManager,
                 persistence     : persistence,
@@ -92,7 +117,8 @@ class DefaultGroovyScriptTeststepBindingSupplier implements GroovyScriptTeststep
                 jsonResult      : createJsonResult,
                 tableResult     : createTableResult,
                 getBean         : getBean,
-                getSql          : getSql
+                getSql          : getSql,
+                http            : http,
         ]
     }
 
