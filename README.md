@@ -41,6 +41,11 @@ to extend the generic limits of the standalone testery application by:
 * test step results can be any kind of data and UI 
 
 
+### Testery UI screens
+
+Below you can see the generic UI that is part of the standalone application of testery. Every screen can
+be customized in case of using testery as a library.
+
 #### List of testcases
 ![1-testcase-browse](https://github.com/mariodavid/testery/blob/master/img/1-testcase-browse.png)
 
@@ -55,6 +60,71 @@ to extend the generic limits of the standalone testery application by:
 
 #### Testscript definition
 ![5-testscript-editor](https://github.com/mariodavid/testery/blob/master/img/5-testscript-editor.png)
+
+
+### Teststep automation
+
+#### Teststep scripts
+
+One option to define a teststep automation is to create a Testscript via the UI.
+The script is a groovy script. Within the groovy script it is possible to get access to the 
+teststep input as well as a lot of Spring beans and variables, that allow several automation mechanisms.
+
+In the sub directory [example-testscripts](https://github.com/mariodavid/testery/tree/master/example-testscripts) there are a lot
+of examples on what is possible to do within a groovy testscript. One example of such a script is the HTTP communication with 
+the API of the system that is under test:
+
+```
+class Person {
+    String name
+}
+
+def json = http.post{
+    request.uri = "http://httpbin.org/post"
+    request.contentType = 'application/json'
+    request.body = new Person(name: "Max Tester")
+}
+
+jsonResult(
+    summary: "worked",
+    expected: [name: "Max Testster"],
+    actual: json
+)
+```
+
+
+#### Teststep classes
+
+The second option is only possible when testery is used as a library within a customized testery-app.
+In this case, the developer has to create a Spring bean and implement the Interface [TeststepActionExecutor](https://github.com/mariodavid/testery/blob/master/modules/global/src/de/diedavids/testery/service/TeststepActionExecutor.java) in the core module of the testery-app.
+
+Example teststep class:
+
+```
+@Component
+public class CreateCustomerTeststepExecutor implements TeststepActionExecutor {
+
+    @Inject
+    CustomerService customerService
+
+
+    @Override
+    void execute(Teststep teststep, TeststepInput teststepInput, TeststepResult teststepResult) {
+        Customer customer = customerService.createCustomer(teststep, teststepInput, teststepResult);
+    }
+
+    @Override
+    boolean supports(Testaction testaction) {
+        testaction.getCode() == "CREATE_CUSTOMER"
+    }
+
+    @Override
+    String getResultType() {
+        'testery$SingleValueTeststepResult'
+    }
+}
+
+``` 
 
 
 ## Installation
