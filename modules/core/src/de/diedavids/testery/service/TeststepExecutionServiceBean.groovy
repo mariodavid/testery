@@ -4,9 +4,12 @@ import com.haulmont.cuba.core.Persistence
 import com.haulmont.cuba.core.global.*
 import com.haulmont.cuba.core.global.validation.RequiredView
 import de.diedavids.testery.core.GroovyScriptTeststepActionExecutor
+import de.diedavids.testery.core.binding.GroovyScriptTeststepBindingSupplier
+import de.diedavids.testery.core.binding.JsonTeststepInputParseException
 import de.diedavids.testery.data.SimpleDataLoader
 import de.diedavids.testery.entity.testaction.ActionScript
 import de.diedavids.testery.entity.teststep.Teststep
+import de.diedavids.testery.entity.teststep.input.JsonTeststepInput
 import de.diedavids.testery.entity.teststep.input.TeststepInput
 import de.diedavids.testery.entity.teststep.result.TeststepResult
 import groovy.util.logging.Slf4j
@@ -38,24 +41,50 @@ class TeststepExecutionServiceBean implements TeststepExecutionService {
     @Inject
     Metadata metadata
 
+    @Inject
+    List<GroovyScriptTeststepBindingSupplier> groovyScriptTeststepBindingSuppliers
+
     @Override
     void executeTeststep(@RequiredView("teststep-view") Teststep teststep) {
 
-        ActionScript actionTestscript = simpleDataLoader.loadByReference(ActionScript, "action", teststep.action, "actionScript-view")
-        TeststepInput teststepInput = dataManager.reload(teststep.input, "input-view")
+        ActionScript actionTestscript = findActionScriptForTeststep(teststep)
+        TeststepActionExecutor teststepActionExecutor = findTeststepActionExecutor(actionTestscript, teststep)
+        TeststepResult teststepResult = createTeststepResultInstance(actionTestscript, teststepActionExecutor)
+        TeststepInput teststepInput = loadTeststepInput(teststep)
 
-        TeststepActionExecutor teststepActionExecutor = null
+        doExecute(teststepActionExecutor, teststep, teststepInput, teststepResult)
 
+    }
+
+    protected ActionScript findActionScriptForTeststep(Teststep teststep) {
+        simpleDataLoader.loadByReference(ActionScript, "action", teststep.action, "actionScript-view")
+    }
+
+    protected TeststepInput loadTeststepInput(Teststep teststep) {
+        dataManager.reload(teststep.input, "input-view")
+    }
+
+    protected TeststepResult createTeststepResultInstance(ActionScript actionTestscript, TeststepActionExecutor teststepActionExecutor) {
         TeststepResult teststepResult = null
         if (actionTestscript) {
-            teststepActionExecutor = createScriptTeststepActionExecutor(teststep, actionTestscript, teststepActionExecutor)
             teststepResult = createTeststepResult(actionTestscript.getResultType())
-        }
-        else {
-            teststepActionExecutor = findTeststepActionExecutorBean(teststep)
+        } else {
             teststepResult = createTeststepResult(teststepActionExecutor.getResultType())
         }
+        teststepResult
+    }
 
+    protected TeststepActionExecutor findTeststepActionExecutor(ActionScript actionTestscript, Teststep teststep) {
+        TeststepActionExecutor teststepActionExecutor = null
+        if (actionTestscript) {
+            teststepActionExecutor = createScriptTeststepActionExecutor(teststep, actionTestscript, teststepActionExecutor)
+        } else {
+            teststepActionExecutor = findTeststepActionExecutorBean(teststep)
+        }
+        teststepActionExecutor
+    }
+
+    protected void doExecute(TeststepActionExecutor teststepActionExecutor, Teststep teststep, TeststepInput teststepInput, TeststepResult teststepResult) {
         try {
             teststepActionExecutor.execute(teststep, teststepInput, teststepResult);
             teststep = dataManager.reload(teststep, 'teststep-view')
@@ -65,21 +94,49 @@ class TeststepExecutionServiceBean implements TeststepExecutionService {
 
             dataManager.commit(teststep)
         }
+        catch (JsonTeststepInputParseException e) {
+            log.error("Error while executing teststep", e)
+            teststep = reloadTeststepResult(teststep, teststepResult)
+            saveTeststepResult(e, teststepResult, teststepInput as JsonTeststepInput)
+            saveTeststep(teststep)
+        }
         catch (Exception e) {
             log.error("Error while executing teststep", e)
-            teststep = dataManager.reload(teststep, 'teststep-view')
-            teststep.result = teststepResult
-
-            teststepResult.stacktrace = ExceptionUtils.getStackTrace(e)
-            teststepResult.summary = "Error"
-            dataManager.commit(teststepResult)
-
-            teststep.executed = true
-            teststep.executedAt = timeSource.currentTimestamp()
-
-            dataManager.commit(teststep)
+            teststep = reloadTeststepResult(teststep, teststepResult)
+            saveTeststepResult(e, teststepResult)
+            saveTeststep(teststep)
         }
+    }
 
+    protected Teststep reloadTeststepResult(Teststep teststep, TeststepResult teststepResult) {
+        teststep = dataManager.reload(teststep, 'teststep-view')
+        teststep.result = teststepResult
+        teststep
+    }
+
+    protected void saveTeststep(Teststep teststep) {
+        teststep.executed = true
+        teststep.executedAt = timeSource.currentTimestamp()
+
+        dataManager.commit(teststep)
+    }
+
+    protected void saveTeststepResult(JsonTeststepInputParseException e, TeststepResult teststepResult, JsonTeststepInput jsonTeststepInput) {
+        teststepResult.stacktrace = ExceptionUtils.getStackTrace(e)
+
+        teststepResult.error = """Error while parsing JSON Teststep Input:
+-------------------------------
+${jsonTeststepInput.input}
+"""
+        teststepResult.summary = "Error"
+        dataManager.commit(teststepResult)
+    }
+
+    protected void saveTeststepResult(Exception e, TeststepResult teststepResult) {
+        teststepResult.stacktrace = ExceptionUtils.getStackTrace(e)
+        teststepResult.summary = "Error"
+        teststepResult.error = "Error while executing teststep: ${e.message}"
+        dataManager.commit(teststepResult)
     }
 
     protected GroovyScriptTeststepActionExecutor createScriptTeststepActionExecutor(Teststep teststep, ActionScript actionTestscript, TeststepActionExecutor teststepActionExecutor) {
@@ -88,7 +145,8 @@ class TeststepExecutionServiceBean implements TeststepExecutionService {
                 actionTestscript: actionTestscript,
                 dataManager: dataManager,
                 scripting: scripting,
-                metadata: metadata
+                metadata: metadata,
+                groovyScriptTeststepBindingSuppliers: groovyScriptTeststepBindingSuppliers
         )
         teststepActionExecutor
     }

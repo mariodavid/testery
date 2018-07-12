@@ -3,6 +3,7 @@ package de.diedavids.testery.core
 import com.haulmont.cuba.core.global.DataManager
 import com.haulmont.cuba.core.global.Metadata
 import com.haulmont.cuba.core.global.Scripting
+import de.diedavids.testery.core.binding.GroovyScriptTeststepBindingSupplier
 import de.diedavids.testery.entity.testaction.ActionScript
 import de.diedavids.testery.entity.testaction.Testaction
 import de.diedavids.testery.entity.teststep.input.JsonTeststepInput
@@ -27,74 +28,31 @@ class GroovyScriptTeststepActionExecutor implements TeststepActionExecutor {
 
     Metadata metadata
 
+    List<GroovyScriptTeststepBindingSupplier> groovyScriptTeststepBindingSuppliers
+
 
     @Override
     void execute(Teststep teststep, TeststepInput teststepInput, TeststepResult teststepResult) {
 
 
-        Closure createJsonResult = { Map params ->
-
-            JsonTeststepResult jsonTeststepResult = (JsonTeststepResult) teststepResult
-            jsonTeststepResult.summary = params.summary as String
-
-            jsonTeststepResult.expectedValue = mapAsJson(params.expected as Map)
-            jsonTeststepResult.actualValue = mapAsJson(params.actual as Map)
-
-        }
-
-        Closure createTableResult = { Map params ->
-
-            TableValueTeststepResult tableValueTeststepResult = (TableValueTeststepResult) teststepResult
-            tableValueTeststepResult.summary = params.summary as String
-
-            if (params.expected) {
-                tableValueTeststepResult.expectedTable = mapAsJson(params.expected as List)
-            }
-            if (params.actual) {
-                tableValueTeststepResult.actualTable = mapAsJson(params.actual as List)
-            }
-        }
-
-        scripting.evaluateGroovy(actionGroovyScript, new Binding(
-                dataManager: dataManager,
-                teststep: teststep,
-                input: getTeststepInput(teststepInput),
-                testaction: actionTestscript.action,
-                result: teststepResult,
-                jsonResult: createJsonResult,
-                tableResult: createTableResult
-        ))
+        scripting.evaluateGroovy(actionGroovyScript, getScriptBinding(teststep, teststepInput, teststepResult))
 
     }
 
-    def getTeststepInput(TeststepInput teststepInput) {
+    protected Binding getScriptBinding(Teststep teststep, TeststepInput teststepInput, TeststepResult teststepResult) {
 
-        if (teststepInput instanceof JsonTeststepInput) {
-            new JsonSlurper().parseText(teststepInput.input)
-        } else {
-            teststepInput
+
+        Map<String, Object> bindingValues = [:]
+        groovyScriptTeststepBindingSuppliers.each {
+            bindingValues += it.getBinding(teststep, teststepInput, teststepResult, actionTestscript)
         }
-    }
 
-    protected String mapAsJson(Map data) {
-        JsonOutput.prettyPrint(JsonOutput.toJson(data))
-    }
-
-    protected String mapAsJson(List data) {
-        JsonOutput.prettyPrint(JsonOutput.toJson(data))
+        new Binding(bindingValues)
     }
 
 
     protected String getActionGroovyScript() {
-        """
-import com.haulmont.cuba.core.global.AppBeans
-import com.haulmont.cuba.core.global.DataManager
-import com.haulmont.cuba.core.global.Metadata
-
-${actionTestscript.script.script}
-"""
-
-
+        actionTestscript.script.script
     }
 
 
