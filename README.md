@@ -1,4 +1,4 @@
-<img src="https://github.com/mariodavid/testery/blob/master/img/logo/testery-logo-256.png" align="right" />
+<img src="https://github.com/mariodavid/testery/blob/master/img/logo/testery-logo-256.png" align="right" style="width:160px" />
 
 [![Build Status](https://travis-ci.com/mariodavid/testery.svg?branch=master)](https://travis-ci.com/mariodavid/testery)
 [ ![Download](https://api.bintray.com/packages/mariodavid/cuba-components/testery/images/download.svg) ](https://bintray.com/mariodavid/cuba-components/testery/_latestVersion)
