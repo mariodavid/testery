@@ -2,7 +2,9 @@
 [ ![Download](https://api.bintray.com/packages/mariodavid/cuba-components/testery/images/download.svg) ](https://bintray.com/mariodavid/cuba-components/testery/_latestVersion)
 [![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
-Testery - Exploratory testing with automation [![testery-logo](https://github.com/mariodavid/testery/blob/master/img/logo/testery-logo-512.png)](https://github.com/mariodavid/testery)
+<img src="https://github.com/mariodavid/testery/blob/master/img/logo/testery-logo-256.png" align="right" />
+
+Testery - Exploratory testing with automation
 ======================
 
 Efficient exploratory testing with as much automation as possible. Have you ever felt the need to give your
