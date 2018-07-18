@@ -11,5 +11,6 @@
         <item screen="testery$Testscript.browse"/>
         <item screen="testery$ActionScript.browse"/>
         <item screen="testery$Testaction.browse"/>
+        <item screen="testery$TestactionCategory.browse"/>
     </menu>
 </menu-config>

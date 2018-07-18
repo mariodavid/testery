@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://browseCaption"
-        class="de.diedavids.testery.web.testcase.testsuite.TestsuiteBrowse"
-        focusComponent="testsuitesTable"
-        lookupComponent="testsuitesTable"
-        messagesPack="de.diedavids.testery.web.testcase.testsuite">
+        class="de.diedavids.testery.web.testaction.testactioncategory.TestactionCategoryBrowse"
+        focusComponent="testactionCategoriesTable"
+        lookupComponent="testactionCategoriesTable"
+        messagesPack="de.diedavids.testery.web.testaction.testactioncategory">
     <dsContext>
-        <groupDatasource id="testsuitesDs"
-                         class="de.diedavids.testery.entity.testcase.Testsuite"
-                         view="testsuite-view">
+        <groupDatasource id="testactionCategoriesDs"
+                         class="de.diedavids.testery.entity.testaction.TestactionCategory"
+                         view="_local">
             <query>
-                <![CDATA[select e from testery$Testsuite e]]>
+                <![CDATA[select e from testery$TestactionCategory e]]>
             </query>
         </groupDatasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="testsuitesTable"
+    <layout expand="testactionCategoriesTable"
             spacing="true">
         <filter id="filter"
-                applyTo="testsuitesTable"
-                datasource="testsuitesDs">
+                applyTo="testactionCategoriesTable"
+                datasource="testactionCategoriesDs">
             <properties include=".*"/>
         </filter>
-        <groupTable id="testsuitesTable"
+        <groupTable id="testactionCategoriesTable"
                     width="100%">
             <actions>
                 <action id="create"/>
@@ -33,19 +33,17 @@
             <columns>
                 <column id="name"/>
                 <column id="code"/>
-                <column id="description"/>
-                <column id="testactionCategory"/>
             </columns>
-            <rows datasource="testsuitesDs"/>
+            <rows datasource="testactionCategoriesDs"/>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createBtn"
-                        action="testsuitesTable.create"/>
+                        action="testactionCategoriesTable.create"/>
                 <button id="editBtn"
-                        action="testsuitesTable.edit"/>
+                        action="testactionCategoriesTable.edit"/>
                 <button id="removeBtn"
-                        action="testsuitesTable.remove"/>
+                        action="testactionCategoriesTable.remove"/>
             </buttonsPanel>
         </groupTable>
     </layout>

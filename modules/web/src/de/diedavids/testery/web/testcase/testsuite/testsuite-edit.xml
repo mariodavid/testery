@@ -12,21 +12,28 @@
             <collectionDatasource id="testcasesDs"
                                   property="testcases"/>
         </datasource>
+
+        <collectionDatasource id="categoriesDs"
+                              class="de.diedavids.testery.entity.testaction.TestactionCategory"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from testery$TestactionCategory e]]>
+            </query>
+        </collectionDatasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="testcasesBox"
             spacing="true">
         <hbox spacing="true">
-
             <fieldGroup id="fieldGroup"
                         datasource="testsuiteDs">
                 <column width="250px">
                     <field property="name"/>
                     <field property="code"/>
+                    <field property="testactionCategory" optionsDatasource="categoriesDs"/>
                 </column>
             </fieldGroup>
-
             <fieldGroup id="descriptionFieldGroup"
                         datasource="testsuiteDs">
                 <column width="250px">
@@ -36,8 +43,8 @@
             </fieldGroup>
         </hbox>
         <groupBox id="testcasesBox"
-                  expand="testcasesTable"
-                  caption="msg://de.diedavids.testery.entity.testcase/Testsuite.testcases">
+                  caption="msg://de.diedavids.testery.entity.testcase/Testsuite.testcases"
+                  expand="testcasesTable">
             <table id="testcasesTable"
                    width="100%">
                 <columns>

@@ -13,7 +13,7 @@
                               class="de.diedavids.testery.entity.testaction.Testaction"
                               view="_minimal">
             <query>
-                <![CDATA[select e from testery$Testaction e]]>
+                <![CDATA[select e from testery$Testaction e where e.category.id = :param$testactionCategory or e.category is null]]>
             </query>
         </collectionDatasource>
         <collectionDatasource id="inputsDs"

@@ -2,8 +2,6 @@
 <screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
     <screen id="testery$Testaction.browse"
             template="de/diedavids/testery/web/testaction/testaction/testaction-browse.xml"/>
-    <screen id="testery$Testaction.edit"
-            template="de/diedavids/testery/web/testaction/testaction/testaction-edit.xml"/>
     <screen id="testery$Testscript.browse"
             template="de/diedavids/testery/web/testaction/testscript/testscript-browse.xml"/>
     <screen id="testery$Testscript.edit"
@@ -42,4 +40,10 @@
             template="de/diedavids/testery/web/teststep/input/teststepinput/teststep-input-browse.xml"/>
     <screen id="testery$TeststepInput.edit"
             template="de/diedavids/testery/web/teststep/input/teststepinput/teststep-input-edit.xml"/>
+    <screen id="testery$Testaction.edit"
+            template="de/diedavids/testery/web/testaction/testaction/testaction-edit.xml"/>
+    <screen id="testery$TestactionCategory.browse"
+            template="de/diedavids/testery/web/testaction/testactioncategory/testaction-category-browse.xml"/>
+    <screen id="testery$TestactionCategory.edit"
+            template="de/diedavids/testery/web/testaction/testactioncategory/testaction-category-edit.xml"/>
 </screen-config>

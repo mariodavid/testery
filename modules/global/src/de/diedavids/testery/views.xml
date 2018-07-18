@@ -11,6 +11,8 @@
     <view class="de.diedavids.testery.entity.testcase.Testcase"
           extends="_local"
           name="testcase-view">
+        <property name="testsuite"
+                  view="testsuite-view"/>
         <property name="steps"
                   view="teststep-view"/>
     </view>
@@ -35,6 +37,8 @@
           name="testsuite-view">
         <property name="testcases"
                   view="_local"/>
+        <property name="testactionCategory"
+                  view="_minimal"/>
     </view>
     <view class="de.diedavids.testery.entity.teststep.result.SingleValueTeststepResult"
           extends="_local"
@@ -55,6 +59,12 @@
           extends="_local"
           name="input-view">
         <property name="testaction"
+                  view="_minimal"/>
+    </view>
+    <view class="de.diedavids.testery.entity.testaction.Testaction"
+          extends="_local"
+          name="testaction-view">
+        <property name="category"
                   view="_minimal"/>
     </view>
 </views>

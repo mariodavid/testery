@@ -8,6 +8,11 @@ import javax.validation.constraints.NotNull;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import javax.persistence.Lob;
 import com.haulmont.chile.core.annotations.NamePattern;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import com.haulmont.cuba.core.entity.annotation.Lookup;
+import com.haulmont.cuba.core.entity.annotation.LookupType;
 
 @NamePattern("%s|name")
 @Table(name = "TESTERY_TESTACTION")
@@ -27,6 +32,20 @@ public class Testaction extends StandardEntity {
     @Lob
     @Column(name = "DESRCIPTION")
     protected String desrciption;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CATEGORY_ID")
+    protected TestactionCategory category;
+
+    public void setCategory(TestactionCategory category) {
+        this.category = category;
+    }
+
+    public TestactionCategory getCategory() {
+        return category;
+    }
+
 
     public void setDesrciption(String desrciption) {
         this.desrciption = desrciption;

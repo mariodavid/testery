@@ -15,6 +15,10 @@ import org.hibernate.validator.constraints.Length;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.chile.core.annotations.NamePattern;
 import javax.validation.constraints.Pattern;
+import de.diedavids.testery.entity.testaction.TestactionCategory;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @NamePattern("%s (%s)|name,code")
 @Table(name = "TESTERY_TESTSUITE")
@@ -25,6 +29,10 @@ public class Testsuite extends StandardEntity {
     @NotNull
     @Column(name = "NAME", nullable = false)
     protected String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TESTACTION_CATEGORY_ID")
+    protected TestactionCategory testactionCategory;
 
     @Pattern(message = "{msg://onlyUpTo20Characters}", regexp = "^[\\w]{1,20}$")
     @CaseConversion
@@ -41,6 +49,15 @@ public class Testsuite extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "testsuite")
     protected List<Testcase> testcases;
+
+    public void setTestactionCategory(TestactionCategory testactionCategory) {
+        this.testactionCategory = testactionCategory;
+    }
+
+    public TestactionCategory getTestactionCategory() {
+        return testactionCategory;
+    }
+
 
     public void setName(String name) {
         this.name = name;

@@ -31,6 +31,7 @@ create table TESTERY_TESTSUITE (
     DELETED_BY varchar(50),
     --
     NAME varchar(255) not null,
+    TESTACTION_CATEGORY_ID uuid,
     CODE varchar(20) not null,
     DESCRIPTION text,
     --
@@ -75,6 +76,7 @@ create table TESTERY_TESTACTION (
     NAME varchar(255) not null,
     CODE varchar(255) not null,
     DESRCIPTION text,
+    CATEGORY_ID uuid,
     --
     primary key (ID)
 )^
@@ -169,3 +171,20 @@ create table TESTERY_JSON_TESTSTEP_INPUT (
     primary key (ID)
 )^
 -- end TESTERY_JSON_TESTSTEP_INPUT
+-- begin TESTERY_TESTACTION_CATEGORY
+create table TESTERY_TESTACTION_CATEGORY (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    NAME varchar(255) not null,
+    CODE varchar(255),
+    --
+    primary key (ID)
+)^
+-- end TESTERY_TESTACTION_CATEGORY

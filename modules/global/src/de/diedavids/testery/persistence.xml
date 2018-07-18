@@ -15,5 +15,6 @@
         <class>de.diedavids.testery.entity.teststep.result.JsonTeststepResult</class>
         <class>de.diedavids.testery.entity.teststep.input.TeststepInput</class>
         <class>de.diedavids.testery.entity.teststep.input.JsonTeststepInput</class>
+        <class>de.diedavids.testery.entity.testaction.TestactionCategory</class>
     </persistence-unit>
 </persistence>

@@ -8,7 +8,7 @@
     <dsContext>
         <groupDatasource id="testactionsDs"
                          class="de.diedavids.testery.entity.testaction.Testaction"
-                         view="_local">
+                         view="testaction-view">
             <query>
                 <![CDATA[select e from testery$Testaction e]]>
             </query>
@@ -34,6 +34,7 @@
                 <column id="name"/>
                 <column id="code"/>
                 <column id="desrciption"/>
+                <column id="category"/>
             </columns>
             <rows datasource="testactionsDs"/>
             <rowsCount/>

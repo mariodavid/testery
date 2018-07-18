@@ -61,6 +61,7 @@ class TestcaseEdit extends AbstractEditor<Testcase> {
         super.init(params)
 
 
+
         stepsTableCreate.setAfterCommitHandler(new CreateAction.AfterCommitHandler() {
             @Override
             void handle(Entity entity) {
@@ -100,6 +101,7 @@ class TestcaseEdit extends AbstractEditor<Testcase> {
     @Override
     protected void postInit() {
         super.postInit()
+        stepsTableCreate.setWindowParams([testactionCategory: item.testsuite.testactionCategory])
         stepsTable.sort("position", Table.SortDirection.ASCENDING)
     }
 

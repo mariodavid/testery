@@ -8,7 +8,14 @@
     <dsContext>
         <datasource id="testactionDs"
                     class="de.diedavids.testery.entity.testaction.Testaction"
-                    view="_local"/>
+                    view="testaction-view"/>
+        <collectionDatasource id="categoriesDs"
+                              class="de.diedavids.testery.entity.testaction.TestactionCategory"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from testery$TestactionCategory e]]>
+            </query>
+        </collectionDatasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
@@ -21,6 +28,8 @@
                 <field property="code"/>
                 <field property="desrciption"
                        rows="5"/>
+                <field optionsDatasource="categoriesDs"
+                       property="category"/>
             </column>
         </fieldGroup>
         <frame id="windowActions"
