@@ -17,6 +17,9 @@
                 width="800"/>
     <layout expand="contentTabSheet"
             spacing="true">
+        <buttonsPanel id="buttonsPanel">
+
+        </buttonsPanel>
         <fieldGroup id="fieldGroup"
                     datasource="testcaseDs">
             <column width="250px">

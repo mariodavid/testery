@@ -3,6 +3,7 @@ buildscript {
     ext.cubaVersion = '6.9.3'
     repositories {
         
+        mavenLocal()
         maven {
             url 'https://repo.cuba-platform.com/content/groups/work'
             credentials {
@@ -92,6 +93,8 @@ subprojects {
 
 dependencies {
     appComponent("com.haulmont.cuba:cuba-global:$cubaVersion")
+    appComponent("de.diedavids.cuba.taggable:taggable-global:0.2.2")
+    appComponent("de.diedavids.cuba.attachable:attachable-global:0.4.1")
 
 }
 

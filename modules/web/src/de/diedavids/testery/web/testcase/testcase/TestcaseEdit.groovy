@@ -13,6 +13,8 @@ import com.haulmont.cuba.gui.components.actions.CreateAction
 import com.haulmont.cuba.gui.data.CollectionDatasource
 import com.haulmont.cuba.gui.data.Datasource
 import com.haulmont.cuba.gui.xml.layout.ComponentsFactory
+import de.balvi.cuba.declarativecontrollers.web.editor.AnnotatableAbstractEditor
+import de.diedavids.cuba.attachable.web.WithAttachments
 import de.diedavids.testery.entity.testcase.Testcase
 import de.diedavids.testery.entity.teststep.Teststep
 import de.diedavids.testery.service.TeststepExecutionService
@@ -20,7 +22,8 @@ import de.diedavids.testery.service.TeststepExecutionService
 import javax.inject.Inject
 import javax.inject.Named
 
-class TestcaseEdit extends AbstractEditor<Testcase> {
+@WithAttachments
+class TestcaseEdit extends AnnotatableAbstractEditor<Testcase> {
 
 
     @Inject
